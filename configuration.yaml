@@ -11,7 +11,7 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Moscow
   customize: !include customize.yaml
-  packages: !include_dir_named packages
+  packages: !include_dir_named packages/
 
 zone:
   name: Home
@@ -69,7 +69,7 @@ logbook:
 
 # Log setup
 logger:
-  default: critical
+  default: info
   logs:
     homeassistant.components.light.yeelight: debug
 
@@ -79,24 +79,24 @@ sun:
 # Macros of Shell commands
 shell_command: !include shell.yaml
 
-media_player: !include_dir_named mediaplayers/
+media_player: !include_dir_merge_list mediaplayers/
 
-sensor: !include_dir_named sensors/
+sensor: !include_dir_merge_list sensors/
 
 group: !include groups.yaml
 
-automation: !include_dir_named automations/
+automation: !include_dir_merge_list automations/
 
 light: !include lights.yaml
 
-switch: !include_dir_named switches/
+switch: !include_dir_merge_list switches/
 
-vacuum:
-  - platform: roomba
-    name: Roomba
-    host: 192.168.1.13
-    username: !secret roomba_blid
-    password: !secret roomba_password
+#vacuum:
+#  - platform: roomba
+#    name: Roomba
+#    host: 192.168.1.13
+#    username: !secret roomba_blid
+#    password: !secret roomba_password
 
 # Text to speech
 tts:
@@ -110,4 +110,4 @@ tts:
     speed: 2
 
 # Theme selector
-input_select: !include_dir_named inputs/
+input_select: !include_dir_merge_list inputs/

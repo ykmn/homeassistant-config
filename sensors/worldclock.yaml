@@ -1,15 +1,15 @@
-- platform: worldclock
-  time_zone: Etc/UTC
-  name: 'UTC'
-- platform: worldclock
-  time_zone: America/New_York
-  name: 'New York'
-- platform: worldclock
-  time_zone: Europe/Moscow
-  name: 'Moscow'
-- platform: worldclock
-  time_zone: Europe/Paris
-  name: 'Paris'
-- platform: worldclock
-  time_zone: Asia/Novosibirsk
-  name: 'Novosibirsk'
+  - platform: worldclock
+    time_zone: Etc/UTC
+    name: 'UTC'
+  - platform: worldclock
+    time_zone: America/New_York
+    name: 'New York'
+  - platform: worldclock
+    time_zone: Europe/Moscow
+    name: 'Moscow'
+  - platform: worldclock
+    time_zone: Europe/Paris
+    name: 'Paris'
+  - platform: worldclock
+    time_zone: Asia/Novosibirsk
+    name: 'Novosibirsk'

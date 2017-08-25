@@ -1,6 +1,6 @@
-- platform: onkyo
-  host: !secret ip_onkyo
-  name: Onkyo Receiver
-  sources:
-    pc: 'Mac Mini'
-    fm: 'FM Tuner'
+  - platform: onkyo
+    host: !secret ip_onkyo
+    name: Onkyo Receiver
+    sources:
+      pc: 'Mac Mini'
+      fm: 'FM Tuner'
