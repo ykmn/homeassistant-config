@@ -32,6 +32,7 @@ introduction:
 
 # Enables the frontend
 frontend:
+  themes: !include_dir_merge_named themes/
 
 # Enables companion component for the Home Assistant iOS app
 ios:
@@ -71,7 +72,6 @@ logger:
   default: critical
   logs:
     homeassistant.components.light.yeelight: debug
-    homeassistant.components.input_select.pcoptions: debug
 
 # Track the sun
 sun:
@@ -108,3 +108,6 @@ tts:
     voice: oksana
     emotion: good
     speed: 2
+
+# Theme selector
+input_select: !include_dir_named inputs/
