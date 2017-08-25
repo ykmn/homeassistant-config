@@ -17,4 +17,12 @@ ip_bans.yaml
 .DS_Store
 .HA_VERSION
 .uuid
-
+www
+OZW_Log.txt
+*.conf
+pyozw.sqlite
+.*
+!/.gitignore
+!/.travis.yml
+html5_push_registrations.conf
+/icloud/*
