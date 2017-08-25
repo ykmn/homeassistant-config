@@ -1,0 +1,5 @@
+  exclude:
+    domains:
+      - sun
+    entities:
+      - sensor.moon

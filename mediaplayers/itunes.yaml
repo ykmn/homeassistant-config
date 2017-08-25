@@ -1,0 +1,2 @@
+  - platform: itunes
+    host: !secret ip_macmini

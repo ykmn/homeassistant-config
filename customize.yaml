@@ -1,0 +1,13 @@
+#################################################################
+## Customize
+#################################################################
+    switch.mac_mini:
+      icon: mdi:monitor
+    sensor.moscow:
+      icon: mdi:city
+    sensor.weather_moscow_humidity:
+      icon: mdi:water-percent
+    sensor.weather_moscow_pressure:
+      icon: mdi:speedometer
+    sensor.weather_moscow_wind_speed:
+      icon: mdi:weather-windy

@@ -2,20 +2,30 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 55.7350667
-  longitude: 37.6804702
+  latitude: !secret geo_lattitude_home
+  longitude: !secret geo_longitude_home
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 123
   # metric for Metric, imperial for Imperial
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Moscow
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
 
-  customize:
-    switch.mac_mini:
-      icon: mdi:monitor
-    sensor.moscow:
-      icon: mdi:city
+zone:
+  name: Home
+  latitude: !secret geo_lattitude_home
+  longitude: !secret geo_longitude_home
+  radius: 200
+  icon: mdi:home
+
+zone 2:
+  name: Office
+  latitude: !secret geo_lattitude_office
+  longitude: !secret geo_longitude_office
+  radius: 200
+  icon: mdi:worker
 
 # Show links to resources in log and frontend
 introduction:
@@ -23,14 +33,17 @@ introduction:
 # Enables the frontend
 frontend:
 
+# Enables companion component for the Home Assistant iOS app
+ios:
+
 # Enables configuration UI
 config:
 
 http:
   # Uncomment this to add a password (recommended!)
-  # api_password: PASSWORD
+  api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
+  base_url: !secret http_baseurl
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -39,7 +52,7 @@ http:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
+  include_used_components: true
 
 # Discover some devices automatically
 discovery:
@@ -53,6 +66,7 @@ history:
 # View all events in a logbook
 logbook:
 
+# Log setup
 logger:
   default: critical
   logs:
@@ -62,86 +76,35 @@ logger:
 # Track the sun
 sun:
 
-media_player:
-  - platform: onkyo
-    host: 192.168.1.112
-    name: Onkyo Receiver
-    sources:
-      pc: 'Mac Mini'
-      fm: 'FM Tuner'
-  - platform: itunes
-    host: 192.168.1.103
+# Macros of Shell commands
+shell_command: !include shell.yaml
+
+media_player: !include_dir_named mediaplayers/
+
+sensor: !include_dir_named sensors/
+
+group: !include groups.yaml
+
+automation: !include_dir_named automations/
+
+light: !include lights.yaml
+
+switch: !include_dir_named switches/
 
 vacuum:
   - platform: roomba
     name: Roomba
     host: 192.168.1.13
-    username: 6977831C70126550
-    password: LVvUktdGKTscMRrv
-
-# Weather prediction
-sensor:
-  - platform: moon
-  - platform: worldclock
-    time_zone: Etc/UTC
-    name: 'UTC'
-  - platform: worldclock
-    time_zone: America/New_York
-    name: 'New York'
-  - platform: worldclock
-    time_zone: Europe/Moscow
-    name: 'Moscow'
-  - platform: worldclock
-    time_zone: Europe/Paris
-    name: 'Paris'
-  - platform: worldclock
-    time_zone: Asia/Novosibirsk
-    name: 'Novosibirsk'
-  - platform: yweather
-    woeid: 2122265
-    name: Weather Moscow
-    monitored_conditions:
-      - weather
-      - weather_current
-      - temp_min
-      - temp_max
-      - wind_speed
-      - pressure
-      - visibility
-      - humidity
-      - temperature
+    username: !secret roomba_blid
+    password: !secret roomba_password
 
 # Text to speech
 tts:
+  - platform: google
   - platform: yandextts
-    api_key: '1d8ee45e-72ae-4634-8e3c-ef44a2f34b20'
+    api_key: key_yandextts
     language: 'ru-RU'
     codec: mp3
     voice: oksana
     emotion: good
     speed: 2
-
-shell_command: !include shell.yaml
-
-group: !include groups.yaml
-
-automation: !include automations.yaml
-
-switch:
-  platform: command_line
-  switches:
-    mac_mini:
-      friendly_name: "Mac Mini"
-      command_on: "wakeonlan a8:20:66:11:74:81"
-      command_off: "ssh twelve@192.168.1.103 pmset sleepnow"
-      command_state: "ping -c 1 192.168.1.103"
-
-light:
-  - platform: yeelight
-    devices:
-      192.168.1.101:
-        name: Living Room
-        transition: 800
-      192.168.1.110:
-        name: Table Light
-        transition: 600
