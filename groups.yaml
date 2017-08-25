@@ -1,0 +1,21 @@
+  Weather:
+    entities:
+      - sensor.weather_moscow_condition
+      - sensor.weather_moscow_current
+      - sensor.weather_moscow_humidity
+      - sensor.weather_moscow_pressure
+      - sensor.weather_moscow_temperature
+      - sensor.weather_moscow_temperature_min
+      - sensor.weather_moscow_temperature_max
+      - sensor.weather_moscow_visibility
+      - sensor.weather_moscow_wind_speed
+      - sun.sun
+      - sensor.moon
+
+  Clock:
+    - sensor.new_york
+    - sensor.utc
+    - sensor.paris
+    - sensor.moscow
+    - sensor.novosibirsk
+
