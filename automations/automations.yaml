@@ -28,7 +28,7 @@
 #      data:
 #        name: 'default'
 #
-#  - alias: 'Change Current Theme'
+#- alias: 'Change Current Theme'
 #  initial_state: 'on'
 #  trigger:
 #    - platform: state
