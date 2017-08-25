@@ -17,7 +17,6 @@ ip_bans.yaml
 .DS_Store
 .HA_VERSION
 .uuid
-www
 OZW_Log.txt
 *.conf
 pyozw.sqlite
