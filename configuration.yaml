@@ -66,6 +66,9 @@ history:
 
 # View all events in a logbook
 logbook:
+  exclude:
+    domains:
+      - sensor
 
 # Log setup
 logger:
