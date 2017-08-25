@@ -1,11 +1,8 @@
-#################################################################
-## input_select elememts
-#################################################################
   current_theme:
     name: 'Current Theme'
     options:
-      - 'default'
-      - 'dark'
-      - 'midnight'
+     - 'default'
+     - 'dark'
+     - 'midnight'
     initial: 'default'
     icon: 'mdi:palette'
