@@ -75,6 +75,7 @@ logger:
   default: info
   logs:
     homeassistant.components.light.yeelight: debug
+    homeassistant.components.media_player.itunes: debug
 
 # Track the sun
 sun:
@@ -113,4 +114,8 @@ tts:
     speed: 2
 
 # Theme selector
-input_select: !include_dir_merge_list inputs/
+input_select: !include input_select.yaml
+
+# Moscquitto broker
+mqtt:
+  broker: 172.17.0.3

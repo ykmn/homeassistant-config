@@ -1,0 +1,7 @@
+  - platform: fastdotcom
+    minute:
+      - 0
+      - 15
+      - 30
+      - 45
+
