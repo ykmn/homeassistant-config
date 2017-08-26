@@ -118,4 +118,16 @@ input_select: !include input_select.yaml
 
 # Moscquitto broker
 mqtt:
-  broker: 172.17.0.3
+  broker: localhost
+  port: 1883
+  client_id: hassio
+  keepalive: 60
+  username: mqtt
+  password: !secret http_password
+  protocol: 3.1.1
+
+panel_iframe:
+  terminal:
+    title: Terminal
+    icon: mdi:console
+    url: https://hassio.local:7681
