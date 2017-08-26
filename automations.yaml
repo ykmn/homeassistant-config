@@ -1,40 +1,38 @@
 - id: Set-Dark-Theme-for-the-night
-  alias: 'Set dark theme for the night'
-  initial_state: True
+  alias: Set dark theme for the night
+  initial_state: true
   trigger:
-    - platform: sun
-      event: below_horizon
+  - at: '20:56'
+    platform: time
   condition:
-    - condition: state
-      entity_id: input_boolean.auto_darktheme
-      state: 'on'
+  - condition: state
+    entity_id: input_boolean.auto_darktheme
+    state: 'on'
   action:
-    - service: frontend.set_theme
-      data:
-        name: 'dark'
-
+  - data:
+      name: dark
+    service: frontend.set_theme
 - id: Set-Default-Theme-for-the-day
-  alias: 'Set default theme for the day'
-  initial_state: True
+  alias: Set default theme for the day
+  initial_state: true
   trigger:
-    - platform: sun
-      event: sunrise
+  - platform: sun
+    event: sunrise
   condition:
-    - condition: state
-      entity_id: input_boolean.auto_darktheme
-      state: 'on'
+  - condition: state
+    entity_id: input_boolean.auto_darktheme
+    state: 'on'
   action:
-    - service: frontend.set_theme
-      data:
-        name: 'default'
-
+  - service: frontend.set_theme
+    data:
+      name: default
 - id: Change-Current-Theme
-  alias: 'Change Current Theme'
+  alias: Change Current Theme
   initial_state: 'on'
   trigger:
-    - platform: state
-      entity_id: input_select.current_theme
+  - platform: state
+    entity_id: input_select.current_theme
   action:
-    - service: frontend.set_theme
-      data_template:
-        name: '{{states.input_select.current_theme.state}}'
+  - service: frontend.set_theme
+    data_template:
+      name: '{{states.input_select.current_theme.state}}'
