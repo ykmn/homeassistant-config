@@ -11,3 +11,12 @@
       icon: mdi:speedometer
     sensor.weather_moscow_wind_speed:
       icon: mdi:weather-windy
+    media_player.computer_airtunes_speaker:
+      hidden: true
+    media_player.macmini_airtunes_speaker:
+      hidden: true
+    media_player.macmini_ex_airtunes_speaker:
+      hidden: true
+    media_player.txnr545_airtunes_speaker:
+      hidden: true
+
