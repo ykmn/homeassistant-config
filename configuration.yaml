@@ -95,12 +95,12 @@ light: !include lights.yaml
 
 switch: !include_dir_merge_list switches/
 
-#vacuum:
-#  - platform: roomba
-#    name: Roomba
-#    host: 192.168.1.13
-#    username: !secret roomba_blid
-#    password: !secret roomba_password
+vacuum:
+  - platform: roomba
+    name: Roomba
+    host: 192.168.1.13
+    username: !secret roomba_blid
+    password: !secret roomba_password
 
 # Text to speech
 tts:
@@ -122,7 +122,7 @@ mqtt:
   port: 1883
   client_id: hassio
   keepalive: 60
-  username: mqtt
+  username: homeassistant
   password: !secret http_password
   protocol: 3.1.1
 
