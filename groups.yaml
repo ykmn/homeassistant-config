@@ -18,3 +18,15 @@
     - sensor.paris
     - sensor.moscow
     - sensor.novosibirsk
+
+  System Status:
+    - sensor.ram_use
+    - sensor.received_eth0
+    - sensor.sent_eth0
+    - sensor.ipv4_address_eth0
+    - sensor.disk_use_
+    - sensor.average_load_5m
+    - sensor.cpu_use
+    - sensor.ram_use
+    - sensor.fastcom_download
+

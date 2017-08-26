@@ -130,4 +130,4 @@ panel_iframe:
   terminal:
     title: Terminal
     icon: mdi:console
-    url: https://hassio.local:7681
+    url: http://hassio.local:7681

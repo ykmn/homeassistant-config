@@ -1,0 +1,9 @@
+  - platform: yahoo_finance
+    symbols:
+      - RHT
+      - GOOGL
+      - USDRUB=X
+      - EURRUB=X
+      - GBPRUB=X
+      - EURUSD=X
+

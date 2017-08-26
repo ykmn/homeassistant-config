@@ -1,0 +1,14 @@
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: memory_use_percent
+      - type: load_5m
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+      - type: ipv4_address
+        arg: eth0
+      - type: processor_use
+

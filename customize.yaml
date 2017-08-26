@@ -19,4 +19,5 @@
       hidden: true
     media_player.txnr545_airtunes_speaker:
       hidden: true
-
+    sensor.fastcom_download:
+      icon: mdi:cloud-download
