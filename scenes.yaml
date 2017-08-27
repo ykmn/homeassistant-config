@@ -1,0 +1,11 @@
+  - name: Good Night!
+    entities:
+      group.all_lights: off
+      media_player.onkyo_receiver: off
+      switch.mac_mini_wakeonlan: off
+
+  - name: I'm home!
+    entities:
+      group.all_lights: on
+      media_player.onkyo_receiver: on
+      switch.mac_mini_wakeonlan: on

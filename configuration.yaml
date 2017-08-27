@@ -15,6 +15,8 @@ homeassistant:
   customize_domain:
     switch:
       homebridge_hidden: false
+    light:
+      homebridge_hidden: false
 
 zone:
   name: Home
@@ -74,6 +76,7 @@ logbook:
       - sensor
 
 # Log setup
+# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
 logger:
   default: info
   logs:
@@ -90,11 +93,15 @@ media_player: !include_dir_merge_list mediaplayers/
 
 sensor: !include_dir_merge_list sensors/
 
+camera: !include_dir_merge_list cameras/
+
 group: !include groups.yaml
 
 automation: !include automations.yaml
 
 light: !include lights.yaml
+
+scene: !include scenes.yaml
 
 switch: !include_dir_merge_list switches/
 
@@ -120,14 +127,14 @@ tts:
 input_select: !include input_select.yaml
 
 # Moscquitto broker
-mqtt:
-  broker: localhost
-  port: 1883
-  client_id: hassio
-  keepalive: 60
-  username: homeassistant
-  password: !secret http_password
-  protocol: 3.1.1
+#mqtt:
+#  broker: localhost
+#  port: 1883
+#  client_id: hassio
+#  keepalive: 60
+#  username: homeassistant
+#  password: !secret http_password
+#  protocol: 3.1.1
 
 panel_iframe:
   terminal:

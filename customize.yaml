@@ -1,7 +1,7 @@
 #################################################################
 ## Customize
 #################################################################
-    switch.mac_mini:
+    switch.mac_mini_wakeonlan:
       icon: mdi:monitor
     sensor.moscow:
       icon: mdi:city

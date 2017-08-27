@@ -2,8 +2,8 @@
     symbols:
       - RHT
       - GOOGL
-      - USDRUB=X
-      - EURRUB=X
-      - GBPRUB=X
-      - EURUSD=X
+      - USDRUB
+      - EURRUB
+      - GBPRUB
+      - EURUSD
 

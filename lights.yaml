@@ -6,6 +6,9 @@
       192.168.1.100:
         name: Living Room
         transition: 800
+        use_music_mode: True
       192.168.1.102:
         name: Table Light
         transition: 600
+        use_music_mode: True
+

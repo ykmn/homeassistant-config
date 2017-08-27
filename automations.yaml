@@ -2,47 +2,56 @@
   alias: Set dark theme for the night
   initial_state: true
   trigger:
-  - at: '21:30'
-    platform: time
+  - platform: state 
+    entity_id: sun.sun
+    from: 'below_horizon'
+    to: 'above_horizon'
   condition:
   - condition: state
     entity_id: input_boolean.auto_darktheme
     state: 'on'
   action:
-  - data:
-      name: dark
-    service: frontend.set_theme
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.current_theme
+      option: 'dark'
+
 - id: Set-Default-Theme-for-the-day
   alias: Set default theme for the day
   initial_state: true
   trigger:
   - platform: sun
-    event: sunrise
+    event: 'sunrise'
+    offset: '-00:30:00'
   condition:
   - condition: state
     entity_id: input_boolean.auto_darktheme
     state: 'on'
   action:
-  - service: frontend.set_theme
+  - service: input_select.select_option
     data:
-      name: default
+      entity_id: input_select.current_theme
+      option: 'default'
+
+# IF: { input_select current_theme is changed by user OR home assistants boots up } THEN: { set theme to state given by input_select.current_theme }
 - id: Change-Current-Theme
   alias: Change Current Theme
   initial_state: 'on'
   trigger:
   - platform: state
     entity_id: input_select.current_theme
+  - platform: homeassistant
+    event: start
   action:
   - service: frontend.set_theme
     data_template:
-      name: '{{states.input_select.current_theme.state}}'
-- action:
-  - condition: state
-    entity_id: light.living_room
-    state: 'on'
-  alias: Sunday Lights Wakeup
-  condition: []
-  id: '1503778256404'
+      'name': '{{states.input_select.current_theme.state}}'
+
+- id: '1503778256404'
+  alias: Morning Lights Wakeup
   trigger:
-  - at: '8:55'
-    platform: time
+  - platform: time
+    at: '8:15'
+  action:
+  - service: light.turn_on
+    entity_id: light.living_room
