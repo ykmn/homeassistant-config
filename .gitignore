@@ -3,6 +3,8 @@
 *.csr
 *.crt
 *.key
+id_rsa
+id_rsa.pub
 home-assistant.log
 home-assistant_v2*.*
 *.db-journal
@@ -12,6 +14,8 @@ lib
 deps
 tts
 secrets.yaml
+config.json
+persist
 known_devices.yaml
 ip_bans.yaml
 .DS_Store

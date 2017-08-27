@@ -2,8 +2,8 @@
   alias: Set dark theme for the night
   initial_state: true
   trigger:
-  - event: sunset
-    platform: sun
+  - at: '21:30'
+    platform: time
   condition:
   - condition: state
     entity_id: input_boolean.auto_darktheme
@@ -36,3 +36,13 @@
   - service: frontend.set_theme
     data_template:
       name: '{{states.input_select.current_theme.state}}'
+- action:
+  - condition: state
+    entity_id: light.living_room
+    state: 'on'
+  alias: Sunday Lights Wakeup
+  condition: []
+  id: '1503778256404'
+  trigger:
+  - at: '8:55'
+    platform: time
