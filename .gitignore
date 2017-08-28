@@ -16,7 +16,7 @@ deps
 tts
 secrets.yaml
 config.json
-persist
+/persist/*
 known_devices.yaml
 ip_bans.yaml
 .DS_Store
