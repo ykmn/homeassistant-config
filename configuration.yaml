@@ -22,7 +22,7 @@ zone:
   name: Home
   latitude: !secret geo_lattitude_home
   longitude: !secret geo_longitude_home
-  radius: 200
+  radius: 100
   icon: mdi:home
 
 zone 2:
