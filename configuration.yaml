@@ -128,7 +128,8 @@ tts:
 input_select: !include input_select.yaml
 
 # Moscquitto broker
-#mqtt:
+mqtt:
+  broker: 172.17.0.1
 #  broker: localhost
 #  port: 1883
 #  client_id: hassio

@@ -9,40 +9,40 @@
 homeassistant:
   customize_domain:
     binary_sensor:
-      homebridge_hidden: true
+      homebridge_hidden: false
 
     climate:
-      homebridge_hidden: true
+      homebridge_hidden: false
 
     cover:
       homebridge_hidden: false
 
     device_tracker:
-      homebridge_hidden: true
+      homebridge_hidden: false
 
     fan:
-      homebridge_hidden: true
+      homebridge_hidden: false
 
     group:
-      homebridge_hidden: true
+      homebridge_hidden: false
 
     input_boolean:
-      homebridge_hidden: true
+      homebridge_hidden: false
 
     light:
-      homebridge_hidden: true
+      homebridge_hidden: false
 
     lock:
       homebridge_hidden: false
 
     media_player:
-      homebridge_hidden: true
+      homebridge_hidden: false
 
     scene:
-      homebridge_hidden: true
+      homebridge_hidden: false
 
     sensor:
-      homebridge_hidden: true
+      homebridge_hidden: false
 
     switch:
-      homebridge_hidden: true
+      homebridge_hidden: false

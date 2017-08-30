@@ -1,9 +1,0 @@
-  - platform: yahoo_finance
-    symbols:
-      - RHT
-      - GOOGL
-      - USDRUB
-      - EURRUB
-      - GBPRUB
-      - EURUSD
-
