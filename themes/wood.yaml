@@ -2,7 +2,7 @@ wood:
   # Main colors
   primary-color: '#6B3A1F'                                                        # Header
   accent-color: '#0E3A41'                                                         # Accent color
-  dark-primary-color: 'var(--accent-color)'                                       # Hyperlinks
+  dark-primary-color: 'var(--primary-background-color)'                           # Hyperlinks
   light-primary-color: 'var(--accent-color)'                                      # Horizontal line in about
 
   # Text colors
@@ -18,14 +18,14 @@ wood:
   divider-color: 'rgba(0, 0, 0, .12)'                                             # Divider
 
   # Table rows
-  table-row-background-color: '#353840'                                           # Table row
-  table-row-alternative-background-color: '#3E424B'                               # Table row alternative
+  table-row-background-color: '#A28C74'                                           # Table row
+  table-row-alternative-background-color: '#927C64'                               # Table row alternative
 
   # Nav Menu
   paper-listbox-color: 'var(--primary-color)'                                     # Navigation menu selection hoover
   paper-listbox-background-color: '#2E333A'                                       # Navigation menu background
   paper-grey-50: 'var(--primary-text-color)'
-  paper-grey-200: '#414A59'                                                       # Navigation menu selection
+  paper-grey-200: '#C67A2E'                                                       # Navigation menu selection
 
   # Paper card
   paper-card-header-color: 'var(--accent-color)'                                  # Card header text colour
