@@ -12,5 +12,6 @@
       - 'grey'
       - 'blue-grey'
       - 'wood'
+      - 'solarized'
     initial: 'default'
     icon: 'mdi:palette'
