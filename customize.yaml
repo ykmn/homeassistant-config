@@ -1,4 +1,3 @@
-#################################################################
 ## Customize
 #################################################################
     switch.mac_mini_wakeonlan:
@@ -21,3 +20,14 @@
       hidden: true
     sensor.fastcom_download:
       icon: mdi:cloud-download
+
+## Tabs order:
+##############
+
+    group.tabAutoScenes:
+      order: "1"
+    group.tabClockWeather:
+      order: "2"
+    group.tabSystem:
+      order: "3"
+

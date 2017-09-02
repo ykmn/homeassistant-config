@@ -1,4 +1,21 @@
+  default_view:
+    view: yes
+    entities:
+      - group.Room
+      - group.tabClockWeather
+      - group.tabSystem
+      - group.tabAutoScenes
+
+  tabClockWeather:
+    view: yes
+    icon: mdi:weather-snowy
+    name: Weather/Clock
+    entities:
+      - group.Weather
+      - group.Clock
+
   Weather:
+    name: Weather
     entities:
       - sensor.weather_moscow_condition
       - sensor.weather_moscow_current
@@ -13,20 +30,66 @@
       - sensor.moon
 
   Clock:
-    - sensor.new_york
-    - sensor.utc
-    - sensor.paris
-    - sensor.moscow
-    - sensor.novosibirsk
+    name: Clock
+    entities:
+      - sensor.new_york
+      - sensor.utc
+      - sensor.paris
+      - sensor.moscow
+      - sensor.novosibirsk
 
-  System Status:
-    - sensor.ram_use
-    - sensor.received_eth0
-    - sensor.sent_eth0
-    - sensor.ipv4_address_eth0
-    - sensor.disk_use_
-    - sensor.average_load_5m
-    - sensor.cpu_use
-    - sensor.ram_use
-    - sensor.fastcom_download
+  tabSystem:
+    view: yes
+    name: System Status
+    icon: mdi:raspberrypi
+    entities:
+      - group.System
+
+  System:
+    name: System Status
+    icon: mdi:raspberrypi
+    entities:
+      - sensor.ram_use
+      - sensor.received_eth0
+      - sensor.sent_eth0
+      - sensor.ipv4_address_eth0
+      - sensor.disk_use_
+      - sensor.average_load_5m
+      - sensor.cpu_use
+      - sensor.ram_use
+      - sensor.fastcom_download
+
+  tabAutoScenes:
+    view: yes
+    name: Automation
+    icon: mdi:auto-fix
+    entities:
+      - group.Automations
+      - group.Scenes
+
+  Automations:
+    name: Automations
+    control: hidden
+    entities:
+      - automation.change_current_theme
+      - automation.morning_lights_wakeup
+      - automation.set_dark_theme_for_the_night
+      - automation.set_default_theme_for_the_day
+      - input_select.current_theme
+
+  Scenes:
+    name: Scenes
+    entities:
+      - scene.good_night
+      - scene.im_home
+
+  Room:
+    name: Living Room
+    control: hidden
+    entities:
+      - light.living_room
+      - light.table_light
+      - media_player.itunes
+      - media_player.onkyo_receiver
+      - switch.mac_mini_wakeonlan
 

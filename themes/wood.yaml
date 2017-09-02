@@ -14,14 +14,13 @@ wood:
   label-badge-text-color: "var(--text-primary-color)"
 
   paper-card-background-color: "#A58456"
-  paper-grey-50: "var(--text-primary-color)"
+  paper-grey-50: "#6B3A1F"
   paper-grey-200: "#DDD4C8"
   paper-item-icon-color: "#6B3A1F"
   paper-listbox-background-color: "#A58456"
   paper-listbox-color: "#6B3A1F"
 
   paper-card-header-color: "#EDE4D8"
-  paper-grey-50: "#6B3A1F"
 
   paper-item-icon-active-color: "#F7C02A"
   paper-item-icon_-_color: "#FF00FF"
