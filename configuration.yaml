@@ -143,3 +143,7 @@ panel_iframe:
     title: Terminal
     icon: mdi:console
     url: http://hassio.local:7681
+  configurator:
+    title: HASS Configurator
+    icon: mdi:wrench
+    url: http://hassio.local:3218
