@@ -111,7 +111,7 @@ switch: !include_dir_merge_list switches/
 #    host: 192.168.1.13
 #    username: !secret roomba_blid
 #    password: !secret roomba_password
-#    continuous: True
+#    continuous: false
 
 # Text to speech
 tts:

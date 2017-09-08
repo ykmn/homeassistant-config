@@ -12,6 +12,7 @@
     name: Weather/Clock
     entities:
       - group.Weather
+      - camera.meteogram
       - group.Clock
 
   Weather:
@@ -64,22 +65,21 @@
     name: Automation
     icon: mdi:auto-fix
     entities:
-      - group.Automations
+      - group.Theme
       - group.Scenes
+      - group.all_automations
+      - group.all_scripts
 
-  Automations:
-    name: Automations
+  Theme:
+    name: Theme Select
     control: hidden
     entities:
-      - automation.change_current_theme
-      - automation.morning_lights_wakeup
-      - automation.set_dark_theme_for_the_night
-      - automation.set_default_theme_for_the_day
       - input_select.current_theme
 
   Scenes:
     name: Scenes
     entities:
+      - group.all_scripts
       - scene.good_night
       - scene.im_home
 
