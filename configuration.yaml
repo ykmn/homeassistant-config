@@ -105,13 +105,13 @@ scene: !include scenes.yaml
 
 switch: !include_dir_merge_list switches/
 
-#vacuum:
-#  - platform: roomba
-#    name: Roomba
-#    host: 192.168.1.13
-#    username: !secret roomba_blid
-#    password: !secret roomba_password
-#    continuous: false
+vacuum:
+  - platform: roomba
+    name: Roomba
+    host: 192.168.1.13
+    username: !secret roomba_blid
+    password: !secret roomba_password
+    continuous: false
 
 # Text to speech
 tts:
@@ -128,8 +128,8 @@ tts:
 input_select: !include input_select.yaml
 
 # Moscquitto broker
-mqtt:
-  broker: 172.17.0.1
+#mqtt:
+#  broker: 172.17.0.1
 #  broker: localhost
 #  port: 1883
 #  client_id: hassio
@@ -139,11 +139,7 @@ mqtt:
 #  protocol: 3.1.1
 
 panel_iframe:
-  terminal:
-    title: Terminal
-    icon: mdi:console
-    url: http://hassio.local:7681
   configurator:
     title: HASS Configurator
     icon: mdi:wrench
-    url: http://hassio.local:3218
+    url: http://127.0.0.1:3218

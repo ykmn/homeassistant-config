@@ -30,3 +30,5 @@ pyozw.sqlite
 !/.travis.yml
 html5_push_registrations.conf
 /icloud/*
+configurator.py
+

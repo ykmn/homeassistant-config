@@ -89,6 +89,7 @@
     entities:
       - light.living_room
       - light.table_light
+      - vacuum.roomba
       - media_player.itunes
       - media_player.onkyo_receiver
       - switch.mac_mini_wakeonlan
