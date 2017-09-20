@@ -105,13 +105,13 @@ scene: !include scenes.yaml
 
 switch: !include_dir_merge_list switches/
 
-vacuum:
-  - platform: roomba
-    name: Roomba
-    host: 192.168.1.13
-    username: !secret roomba_blid
-    password: !secret roomba_password
-    continuous: false
+#vacuum:
+#  - platform: roomba
+#    name: Roomba
+#    host: 192.168.1.13
+#    username: !secret roomba_blid
+#    password: !secret roomba_password
+#    continuous: false
 
 # Text to speech
 tts:
@@ -142,4 +142,4 @@ panel_iframe:
   configurator:
     title: HASS Configurator
     icon: mdi:wrench
-    url: http://127.0.0.1:3218
+    url: http://192.168.1.114:3218
