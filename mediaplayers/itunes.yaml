@@ -1,2 +1,2 @@
   - platform: itunes
-    host: !secret ip_macmini
+    host: !secret ip_nuc
