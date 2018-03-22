@@ -1,39 +1,40 @@
-## Customize
-#################################################################
-    switch.mac_mini_wakeonlan:
-      icon: mdi:monitor
-    sensor.moscow:
-      icon: mdi:city
-    sensor.weather_moscow_humidity:
-      icon: mdi:water-percent
-    sensor.weather_moscow_pressure:
-      icon: mdi:speedometer
-    sensor.weather_moscow_wind_speed:
-      icon: mdi:weather-windy
-    media_player.computer_airtunes_speaker:
-      hidden: true
-    media_player.macmini_airtunes_speaker:
-      hidden: true
-    media_player.macmini_ex_airtunes_speaker:
-      hidden: true
-    media_player.txnr545_airtunes_speaker:
-      hidden: true
-    sensor.fastcom_download:
-      icon: mdi:cloud-download
-
-## Tabs order:
-##############
-
-    group.tabAutoScenes:
-      order: "1"
-    group.tabClockWeather:
-      order: "2"
-    group.tabSystem:
-      order: "3"
-    group.all_automations:
-      hidden: false
-      name: "All Automations"
-    group.all_scripts:
-      hidden: false
-      name: "All Scenes"
-
+switch.mac_mini_wakeonlan:
+  icon: mdi:monitor
+sensor.moscow:
+  icon: mdi:city
+sensor.weather_moscow_humidity:
+  icon: mdi:water-percent
+sensor.weather_moscow_pressure:
+  icon: mdi:speedometer
+sensor.weather_moscow_wind_speed:
+  icon: mdi:weather-windy
+media_player.computer_airtunes_speaker:
+  hidden: true
+media_player.macmini_airtunes_speaker:
+  hidden: true
+media_player.macmini_ex_airtunes_speaker:
+  hidden: true
+media_player.txnr545_airtunes_speaker:
+  hidden: true
+sensor.fastcom_download:
+  icon: mdi:cloud-download
+group.tabAutoScenes:
+  order: '1'
+group.tabClockWeather:
+  order: '2'
+group.tabSystem:
+  order: '3'
+group.all_automations:
+  hidden: false
+  name: All Automations
+group.all_scripts:
+  hidden: false
+  name: All Scenes
+group.room:
+  entity_id:
+  - light.living_room
+  - light.table_light
+  - vacuum.roomba
+  - media_player.itunes
+  - media_player.onkyo_receiver
+  - switch.nuc_wakeonlan

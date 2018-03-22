@@ -1,6 +1,9 @@
 #!/bin/bash
 
-source /srv/homeassistant/homeassistant_venv/bin/activate
+#sudo su -s /bin/bash homeassistant
+#cd /home/homeassistant/.homeassistant/
+
+#source /srv/homeassistant/homeassistant_venv/bin/activate
 hass --script check_config
 
 git add .
@@ -11,3 +14,4 @@ git commit -m "${CHANGE_MSG}"
 git push origin master
 
 exit
+

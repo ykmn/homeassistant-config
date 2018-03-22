@@ -1,0 +1,20 @@
+sensor.twelves_ipad_rd_battery_state:
+  name:
+  platform: ios
+  unique_id: state_twelves_ipad_rd
+sensor.twelves_iphone_6s_battery_level:
+  name:
+  platform: ios
+  unique_id: level_twelves_iphone_6s
+sensor.twelves_ipad_rd_battery_level:
+  name:
+  platform: ios
+  unique_id: level_twelves_ipad_rd
+sensor.twelves_iphone_6s_battery_state:
+  name:
+  platform: ios
+  unique_id: state_twelves_iphone_6s
+media_player.macmini:
+  name:
+  platform: cast
+  unique_id: 3bcda6c4-ffdf-4e8c-8a53-d6937630c57c
