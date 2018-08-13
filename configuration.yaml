@@ -38,6 +38,7 @@ zone 2:
 # Enables the frontend
 frontend:
   themes: !include_dir_merge_named themes/
+  javascript_version: latest
 
 # Enables companion component for the Home Assistant iOS app
 ios:
@@ -83,8 +84,8 @@ logbook:
 logger:
   default: info
   logs:
-    homeassistant.components.light.yeelight: debug
-    homeassistant.components.media_player.itunes: debug
+    homeassistant.components.light.yeelight: info
+    homeassistant.components.media_player.itunes: info
 
 # Track the sun
 sun:
@@ -115,6 +116,9 @@ vacuum:
     username: !secret roomba_blid
     password: !secret roomba_password
     continuous: false
+
+weather:
+  - platform: yweather
 
 # Text to speech
 tts:

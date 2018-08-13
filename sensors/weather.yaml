@@ -1,7 +1,7 @@
   - platform: moon
   - platform: yweather
     woeid: 2122265
-    name: Weather Moscow
+    forecast: 3
     monitored_conditions:
       - weather
       - weather_current
