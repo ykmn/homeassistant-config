@@ -14,5 +14,5 @@
       - 'wood'
       - 'solarized'
       - 'PmxMonolight'
-    initial: 'wood'
+    initial: 'blue-grey'
     icon: 'mdi:palette'

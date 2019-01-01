@@ -1,0 +1,22 @@
+  lights_wakeup:
+    alias: Wake Up script
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.living_room
+          brightness: 255
+          color_temp: 330
+          transition: 6000
+  lights_sleep:
+    alias: Go to Sleep script
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.living_room
+          brightness: 15
+          color_temp: 330
+          transition: 6000
+      - service: light.turn_off
+        data:
+          entity_id: light.living_room
+          transition: 100

@@ -1,4 +1,5 @@
-switch.mac_mini_wakeonlan:
+# change icons
+switch.nuc_wakeonlan:
   icon: mdi:monitor
 sensor.moscow:
   icon: mdi:city
@@ -8,28 +9,36 @@ sensor.weather_moscow_pressure:
   icon: mdi:speedometer
 sensor.weather_moscow_wind_speed:
   icon: mdi:weather-windy
+sensor.fastcom_download:
+  icon: mdi:cloud-download
+sensor.airport_express_uptime:
+  icon: mdi:timer
+sensor.airport_express_wan_inbound:
+  icon: mdi:download
+sensor.airport_express_wan_outbound:
+  icon: mdi:upload
+
+# show-hide items
 media_player.computer_airtunes_speaker:
-  hidden: true
-media_player.macmini_airtunes_speaker:
-  hidden: true
-media_player.macmini_ex_airtunes_speaker:
   hidden: true
 media_player.txnr545_airtunes_speaker:
   hidden: true
-sensor.fastcom_download:
-  icon: mdi:cloud-download
-group.tabAutoScenes:
-  order: '1'
-group.tabClockWeather:
-  order: '2'
-group.tabSystem:
-  order: '3'
+#group.tabAutoScenes:
+#  order: '1'
+#group.tabClockWeather:
+#  order: '2'
+#group.tabSystem:
+#  order: '3'
+
+# rename items
 group.all_automations:
   hidden: false
   name: All Automations
 group.all_scripts:
   hidden: false
   name: All Scenes
+
+# group
 group.room:
   entity_id:
   - light.living_room

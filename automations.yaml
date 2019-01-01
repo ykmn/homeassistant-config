@@ -1,96 +1,78 @@
 - id: Set-Dark-Theme-for-the-night
-  alias: Set dark theme for the night
-  initial_state: true
+  alias: Auto set Dark Theme for the night
   trigger:
-    - platform: state 
-      entity_id: sun.sun
-      from: 'below_horizon'
-      to: 'above_horizon'
-  condition:
-    - condition: state
-      entity_id: input_boolean.auto_darktheme
-      state: 'on'
+  - event: sunset
+    offset: -00:30:00
+    platform: sun
   action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.current_theme
-        option: 'dark'
-
+  - data:
+      name: midnight
+    service: frontend.set_theme
+  initial_state: true
 - id: Set-Default-Theme-for-the-day
-  alias: Set default theme for the day
+  alias: Auto set Bright Theme for the day
+  trigger:
+  - event: sunrise
+    offset: -00:30:00
+    platform: sun
+  action:
+  - data:
+      name: blue-grey
+    service: frontend.set_theme
   initial_state: true
-  trigger:
-    - platform: sun
-      event: 'sunrise'
-      offset: '-00:30:00'
-  condition:
-    - condition: state
-      entity_id: input_boolean.auto_darktheme
-      state: 'on'
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.current_theme
-        option: 'default'
-
-# IF: { input_select current_theme is changed by user OR home assistants boots up } THEN: { set theme to state given by input_select.current_theme }
 - id: Change-Current-Theme
-  alias: Change Current Theme
+  alias: Allow Change Current Theme
   initial_state: 'on'
   trigger:
-    - platform: state
-      entity_id: input_select.current_theme
-    - platform: homeassistant
-      event: start
+  - platform: state
+    entity_id: input_select.current_theme
+  - platform: homeassistant
+    event: start
   action:
-    - service: frontend.set_theme
-      data_template:
-        'name': '{{states.input_select.current_theme.state}}'
-
-- id: Morning-Lights-On
-  alias: Morning Lights On
-  initial_state: 'on'
-  trigger:
-    - platform: time
-      at: '8:15'
-  condition:
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-  action:
-    - service: light.turn_on
-      entity_id: light.living_room
-
+  - service: frontend.set_theme
+    data_template:
+      name: '{{states.input_select.current_theme.state}}'
 - id: Morning-Lights-Off
-  alias: Morning Lights Off
-  initial_state: 'on'
+  alias: Turn off light at 9:15
   trigger:
-    - platform: time
-      at: '9:45'
-    - platform: state
-      entity_id: device_tracker.twelves_iphone_6s
-      to: 'not_home'
+    platform: time
+    at: '9:15:00'
   condition:
-    - condition: state
-      entity_id: light.living_room
-      state: 'on'
-    - condition: state
-      entity_id: light.table_light
-      state: 'on'
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
   action:
-    - service: light.turn_off
-      entity_id: light.living_room
-
+  - entity_id: light.living_room
+    service: light.turn_off
+  initial_state: 'on'
 - id: Updater
-  alias: 'Update Available Notifications'
+  alias: Send notifications when Home Assistant update available
   trigger:
     platform: state
     entity_id: updater.updater
   action:
     service: notify.notify
     data:
-      message: 'Update for Home Assistant is available.'
+      message: Update for Home Assistant is available.
+- id: Sunrise
+  alias: Turn on light at 8:10
+  trigger:
+  - platform: time
+    at: 08:10:00
+  condition:
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  - condition: state
+    entity_id: group.all_devices
+    state: home
+  action:
+    service: script.lights_wakeup

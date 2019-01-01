@@ -2,6 +2,6 @@
     host: !secret ip_onkyo
     name: Onkyo Receiver
     sources:
-      video6: 'Mac Mini'
+      video6: 'MacMini'
       fm: 'FM Tuner'
       video3: 'Game PC'

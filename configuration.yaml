@@ -12,25 +12,16 @@ homeassistant:
   time_zone: Europe/Moscow
   customize: !include customize.yaml
   packages: !include_dir_named packages/
-  customize_domain:
-    switch:
-      homebridge_hidden: false
-    light:
-      homebridge_hidden: false
+  auth_providers:
+    - type: homeassistant
+    - type: legacy_api_password
 
-zone:
-  name: Home
-  latitude: !secret geo_lattitude_home
-  longitude: !secret geo_longitude_home
-  radius: 100
-  icon: mdi:home
-
-zone 2:
-  name: Office
-  latitude: !secret geo_lattitude_office
-  longitude: !secret geo_longitude_office
-  radius: 200
-  icon: mdi:worker
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  api_password: !secret http_password
+  base_url: !secret http_baseurl
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
 
 # Show links to resources in log and frontend
 #introduction:
@@ -43,14 +34,58 @@ frontend:
 # Enables companion component for the Home Assistant iOS app
 ios:
 
+# Enables HomeKit
+homekit:
+  filter:
+    include_domains:
+      - media_player
+      - light
+      - switch
+  entity_config:
+    media_player.onkyo_receiver:
+      feature_list:
+        - feature: on_off
+    media_player.itunes:
+      feature_list:
+        - feature: on_off
+        - feature: play_pause
+        - feature: play_stop
+        - feature: toggle_mute
+
 # Enables configuration UI
 config:
 
-http:
-  # Uncomment this to add a password (recommended!)
-  api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  base_url: !secret http_baseurl
+# Embed Hass.IO add-on
+panel_iframe:
+#  configurator:
+#    title: Configurator
+#    icon: mdi:wrench
+#    url: http://hassio.local:3218
+  logviewer:
+    title: Log Viewer
+    icon: mdi:script
+    url: http://hassio.local:4277
+#  grafana:
+#    title: Grafana
+#    icon: mdi:chart-timeline
+#    url: http://hassio.local:3000
+#  influxdb:
+#    title: InfluxDB
+#    url: http://hassio.local:8888
+
+# Adding InfluxDB add-on
+#influxdb:
+#  host: a0d7b954-influxdb
+#  port: 8086
+#  database: homeassistant
+#  username: !secret influxdb_user
+#  password: !secret influxdb_password
+#  max_retries: 3
+#  default_measurement: state
+#  include:
+#    entities:
+#       - sensor.airport_express_wan_inbound
+#       - sensor.airport_express_wan_outbound
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -59,66 +94,71 @@ http:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
-  include_used_components: true
+  # include_used_components: true
 
 # Discover some devices automatically
 discovery:
+  enable:
+    - homekit
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
 # Enables support for tracking state changes over time
 history:
-
 recorder:
   purge_keep_days: 31
 
-# View all events in a logbook
+# Filter events in a logbook
 logbook:
   exclude:
     domains:
       - sensor
 
-# Log setup
-# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
-logger:
-  default: info
-  logs:
-    homeassistant.components.light.yeelight: info
-    homeassistant.components.media_player.itunes: info
+# Enables a map showing the location of tracked devices
+map:
 
 # Track the sun
 sun:
 
+# Log setup
+# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
+logger:
+  default: warning
+  logs:
+    homeassistant.components.light.yeelight: warning
+    homeassistant.components.media_player.itunes: warning
+
+# Cloud
+cloud:
+
+# Enables WOL service
+wake_on_lan:
+
 # Macros of Shell commands
 shell_command: !include shell.yaml
-
+script: !include scripts.yaml
 media_player: !include_dir_merge_list mediaplayers/
-
 sensor: !include_dir_merge_list sensors/
-
 camera: !include_dir_merge_list cameras/
-
 group: !include groups.yaml
-
 automation: !include automations.yaml
-
 light: !include lights.yaml
-
 scene: !include scenes.yaml
-
 switch: !include_dir_merge_list switches/
 
 vacuum:
   - platform: roomba
     name: Roomba
-    host: 192.168.1.13
+    host: !secret ip_roomba
     username: !secret roomba_blid
     password: !secret roomba_password
     continuous: false
 
 weather:
   - platform: yweather
+  - platform: openweathermap
+    api_key: !secret key_openweathermap
 
 # Text to speech
 tts:
@@ -134,19 +174,16 @@ tts:
 # Theme selector
 input_select: !include input_select.yaml
 
-# Moscquitto broker
-#mqtt:
-#  broker: 172.17.0.1
-#  broker: localhost
-#  port: 1883
-#  client_id: hassio
-#  keepalive: 60
-#  username: homeassistant
-#  password: !secret http_password
-#  protocol: 3.1.1
-
-panel_iframe:
-  configurator:
-    title: HASS Configurator
-    icon: mdi:wrench
-    url: http://192.168.1.114:3218
+# Setting zones
+zone:
+  name: Home
+  latitude: !secret geo_lattitude_home
+  longitude: !secret geo_longitude_home
+  radius: 100
+  icon: mdi:home
+zone 2:
+  name: Office
+  latitude: !secret geo_lattitude_office
+  longitude: !secret geo_longitude_office
+  radius: 200
+  icon: mdi:worker

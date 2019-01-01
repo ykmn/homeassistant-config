@@ -1,0 +1,9 @@
+  - platform: whois
+    domain: livcey.com.ru
+    name: 'livcey.com.ru domain name expiry'
+  - platform: whois
+    domain: europaplus.ru
+    name: 'europaplus.ru domain name expiry'
+  - platform: whois
+    domain: ykmn.synology.me
+    name: 'ykmn.synology.me domain name expiry'

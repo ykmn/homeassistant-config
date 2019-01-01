@@ -1,3 +1,4 @@
+# default view
   default_view:
     view: yes
     icon: mdi:home
@@ -7,27 +8,37 @@
       - group.tabSystem
       - group.tabAutoScenes
 
+# tabs
   tabClockWeather:
     view: yes
     icon: mdi:weather-snowy
     name: Weather/Clock
     entities:
-      - group.Weather
-      - camera.meteogram
+      - group.SunMoon
       - group.Clock
 
-  Weather:
-    name: Weather
+  tabSystem:
+    view: yes
+    name: System Status
+    icon: mdi:raspberrypi
     entities:
-      - sensor.weather_moscow_condition
-      - sensor.weather_moscow_current
-      - sensor.weather_moscow_humidity
-      - sensor.weather_moscow_pressure
-      - sensor.weather_moscow_temperature
-      - sensor.weather_moscow_temperature_min
-      - sensor.weather_moscow_temperature_max
-      - sensor.weather_moscow_visibility
-      - sensor.weather_moscow_wind_speed
+      - group.System
+      - group.SSL
+
+  tabAutoScenes:
+    view: yes
+    name: Automation
+    icon: mdi:auto-fix
+    entities:
+      - group.Theme
+      - group.Scenes
+      - group.all_automations
+      - group.all_scripts
+
+# entities
+  SunMoon:
+    name: Sun & Moon
+    entities:
       - sun.sun
       - sensor.moon
 
@@ -40,36 +51,18 @@
       - sensor.moscow
       - sensor.novosibirsk
 
-  tabSystem:
-    view: yes
-    name: System Status
-    icon: mdi:raspberrypi
-    entities:
-      - group.System
-
   System:
     name: System Status
     icon: mdi:raspberrypi
     entities:
-      - sensor.ram_use
-      - sensor.received_eth0
-      - sensor.sent_eth0
-      - sensor.ipv4_address_eth0
-      - sensor.disk_use_
-      - sensor.average_load_5m
-      - sensor.cpu_use
-      - sensor.ram_use
       - sensor.fastcom_download
-
-  tabAutoScenes:
-    view: yes
-    name: Automation
-    icon: mdi:auto-fix
-    entities:
-      - group.Theme
-      - group.Scenes
-      - group.all_automations
-      - group.all_scripts
+      - sensor.ipv4_address_eth0
+      - sensor.network_in_eth0
+      - sensor.network_out_eth0
+      - sensor.processor_use
+      - sensor.load_5m
+      - sensor.disk_use_percent_
+      - sensor.memory_use_percent
 
   Theme:
     name: Theme Select
@@ -93,5 +86,12 @@
       - vacuum.roomba
       - media_player.itunes
       - media_player.onkyo_receiver
-      - switch.mac_mini_wakeonlan
+      - switch.nuc_wakeonlan
 
+  SSL:
+    name: SSL Expiry
+    icon: mdi:certificate
+    entities:
+      - sensor.europaplusru
+      - sensor.livceycomru
+      - sensor.ykmnsynologyme

@@ -1,0 +1,10 @@
+  - platform: cert_expiry
+    host: livcey.com.ru
+    name: 'SSL livcey.com.ru'
+  - platform: cert_expiry
+    host: europaplus.ru
+    name: 'SSL europaplus.ru'
+  - platform: cert_expiry
+    host: ykmn.synology.me
+    port: 5001
+    name: 'SSL ykmn.synology.me'
