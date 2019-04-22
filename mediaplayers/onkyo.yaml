@@ -3,5 +3,8 @@
     name: Onkyo Receiver
     sources:
       video6: 'MacMini'
-      fm: 'FM Tuner'
+      fm: 'FM Radio'
       video3: 'Game PC'
+#      pc: 'MacMini'
+#      fm: 'FM Tuner'
+#      game: 'Game PC'

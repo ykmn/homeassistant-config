@@ -46,4 +46,4 @@ group.room:
   - vacuum.roomba
   - media_player.itunes
   - media_player.onkyo_receiver
-  - switch.nuc_wakeonlan
+  - switch.macmini_wakeonlan

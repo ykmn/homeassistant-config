@@ -14,11 +14,14 @@ homeassistant:
   packages: !include_dir_named packages/
   auth_providers:
     - type: homeassistant
-    - type: legacy_api_password
+#    - type: legacy_api_password
+#      api_password: !secret http_password
+
+# System Health was introduced in 0.87
+system_health:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-  api_password: !secret http_password
   base_url: !secret http_baseurl
   ip_ban_enabled: true
   login_attempts_threshold: 5
@@ -57,10 +60,10 @@ config:
 
 # Embed Hass.IO add-on
 panel_iframe:
-#  configurator:
-#    title: Configurator
-#    icon: mdi:wrench
-#    url: http://hassio.local:3218
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://hassio.local:8080
   logviewer:
     title: Log Viewer
     icon: mdi:script
@@ -100,6 +103,8 @@ updater:
 discovery:
   enable:
     - homekit
+  ignore:
+    - yeelight
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -124,10 +129,11 @@ sun:
 # Log setup
 # Log Severities: notset, debug, info, warn, warning, error, fatal, critical
 logger:
-  default: warning
+  default: info
   logs:
     homeassistant.components.light.yeelight: warning
     homeassistant.components.media_player.itunes: warning
+    homeassistant.components.media_player.onkyo_receiver: debug
 
 # Cloud
 cloud:
@@ -141,11 +147,12 @@ script: !include scripts.yaml
 media_player: !include_dir_merge_list mediaplayers/
 sensor: !include_dir_merge_list sensors/
 camera: !include_dir_merge_list cameras/
-group: !include groups.yaml
+#group: !include groups.yaml
+
 automation: !include automations.yaml
-light: !include lights.yaml
 scene: !include scenes.yaml
 switch: !include_dir_merge_list switches/
+#light: !include lights.yaml
 
 vacuum:
   - platform: roomba
@@ -187,3 +194,24 @@ zone 2:
   longitude: !secret geo_longitude_office
   radius: 200
   icon: mdi:worker
+
+# Yeelight
+yeelight:
+  devices:
+    192.168.1.130:
+      name: Living Room
+      transition: 800
+      use_music_mode: True
+    192.168.1.128:
+      name: Table Light
+      transition: 600
+      use_music_mode: True
+
+# Speedtest.com
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload

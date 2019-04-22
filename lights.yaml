@@ -1,13 +1,13 @@
 #################################################################
 ## Lights
 #################################################################
-  - platform: yeelight
-    devices:
-      192.168.1.100:
-        name: Living Room
-        transition: 800
-        use_music_mode: True
-      192.168.1.102:
-        name: Table Light
-        transition: 600
-        use_music_mode: True
+#  - platform: yeelight
+#    devices:
+#      192.168.1.130:
+#        name: Living Room
+#        transition: 800
+#        use_music_mode: True
+#      192.168.1.128:
+#        name: Table Light
+#        transition: 600
+#        use_music_mode: True

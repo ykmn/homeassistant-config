@@ -31,4 +31,4 @@ pyozw.sqlite
 html5_push_registrations.conf
 /icloud/*
 configurator.py
-
+.storage/*.*
