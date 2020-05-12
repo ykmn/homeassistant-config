@@ -1,0 +1,8 @@
+#################################################################
+## Fans
+#################################################################
+  - platform: xiaomi_miio
+#    host: 192.168.1.115
+    host: !secret xiaomi_humid_ip
+    token: 35fec0c39490bf883daba18453a7ce22
+    name: Xiaomi Air Humidifier

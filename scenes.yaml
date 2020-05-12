@@ -1,11 +1,254 @@
-  - name: Turn everything off
-    entities:
-      group.all_lights: off
-      media_player.onkyo_receiver: off
-      switch.macmini_wakeonlan: off
-
-  - name: I'm home!
-    entities:
-      group.all_lights: on
-      media_player.onkyo_receiver: on
-      switch.macmini_wakeonlan: on
+- id: everything_off
+  name: Turn everything off
+  entities:
+    fan.xiaomi_air_humidifier:
+      buzzer: true
+      child_lock: false
+      depth: 84
+      dry: false
+      friendly_name: Xiaomi Air Humidifier
+      hardware_version: '0001'
+      humidity: 57
+      led_brightness: 0
+      mode: silent
+      model: zhimi.humidifier.cb1
+      motor_speed: 0
+      speed_list:
+      - Silent
+      - Medium
+      - High
+      - Auto
+      state: 'off'
+      supported_features: 1
+      target_humidity: 70
+      temperature: 25.1
+      use_time: 2832798
+    light.living_room:
+      effect_list:
+      - Strobe color
+      - Police
+      - Christmas
+      - RGB
+      - Random Loop
+      - Fast Random Loop
+      - LSD
+      - Slowdown
+      - Disco
+      - Strobe epilepsy!
+      - Alarm
+      - Police2
+      - WhatsApp
+      - Facebook
+      - Twitter
+      - Slow Temp
+      - Stop
+      - Fire Flicker
+      flowing: false
+      friendly_name: Living Room
+      max_mireds: 588
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
+    light.night_light:
+      effect_list:
+      - Disco
+      - Strobe epilepsy!
+      - Alarm
+      - Police2
+      - WhatsApp
+      - Facebook
+      - Twitter
+      - Slow Temp
+      - Stop
+      - Fire Flicker
+      flowing: false
+      friendly_name: Night Light
+      state: 'off'
+      supported_features: 45
+    light.table_light:
+      effect_list:
+      - Slow Temp
+      - Stop
+      - Fire Flicker
+      flowing: false
+      friendly_name: Table Light
+      max_mireds: 588
+      min_mireds: 153
+      night_light: false
+      state: 'off'
+      supported_features: 47
+    media_player.onkyo_receiver:
+      friendly_name: Onkyo Receiver
+      source_list:
+      - MacMini
+      - FM Radio
+      - Game PC
+      - Internet Radio
+      state: 'off'
+      supported_features: 20364
+      video_out: N,/,A
+- id: imhome
+  name: I'm home!
+  entities:
+    group.all_lights:
+      auto: true
+      entity_id:
+      - light.living_room
+      - light.night_light
+      - light.table_light
+      friendly_name: all lights
+      hidden: true
+      order: 5
+      state: 'on'
+    media_player.onkyo_receiver:
+      friendly_name: Onkyo Receiver
+      is_volume_muted: false
+      source: MacMini
+      source_list:
+      - MacMini
+      - FM Radio
+      - Game PC
+      - Internet Radio
+      state: 'on'
+      supported_features: 20364
+      video_out: N,/,A
+      volume_level: 0.375
+    switch.macmini_wake_on_lan:
+      friendly_name: MacMini Wake-on-LAN
+      state: 'on'
+- id: '1574965305191'
+  name: Movie mode
+  entities:
+    light.living_room:
+      brightness: 3
+      color_temp: 413
+      hs_color:
+      - 30.85
+      - 96.863
+      rgb_color:
+      - 255
+      - 134
+      - 7
+      state: 'on'
+      xy_color:
+      - 0.603
+      - 0.381
+    light.night_light:
+      state: 'off'
+    light.table_light:
+      brightness: 23
+      color_temp: 352
+      state: 'on'
+- id: '1577043220185'
+  name: All lights on!
+  entities:
+    light.living_room:
+      brightness: 255
+      color_temp: 400
+      friendly_name: Living Room
+      hs_color:
+      - 28.874
+      - 72.522
+      max_mireds: 588
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 159
+      - 70
+      state: 'on'
+      xy_color:
+      - 0.546
+      - 0.389
+    light.night_light:
+      brightness: 255
+      friendly_name: Night Light
+      state: 'on'
+    light.table_light:
+      brightness: 255
+      color_temp: 302
+      state: 'on'
+      supported_features: 47
+- id: '1584556065143'
+  name: Evening lights
+  entities:
+    light.living_room:
+      brightness: 255
+      color_temp: 519
+      effect_list:
+      - Strobe color
+      - Police
+      - Christmas
+      - RGB
+      - Random Loop
+      - Fast Random Loop
+      - LSD
+      - Slowdown
+      - Disco
+      - Strobe epilepsy!
+      - Alarm
+      - Police2
+      - WhatsApp
+      - Facebook
+      - Twitter
+      - Slow Temp
+      - Stop
+      - Fire Flicker
+      flowing: false
+      friendly_name: Living Room
+      hs_color:
+      - 30.951
+      - 98.724
+      max_mireds: 588
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 133
+      - 3
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.604
+      - 0.38
+    light.night_light:
+      brightness: 84
+      effect_list:
+      - Disco
+      - Strobe epilepsy!
+      - Alarm
+      - Police2
+      - WhatsApp
+      - Facebook
+      - Twitter
+      - Slow Temp
+      - Stop
+      - Fire Flicker
+      flowing: false
+      friendly_name: Night Light
+      state: 'on'
+      supported_features: 45
+    light.table_light:
+      brightness: 255
+      color_temp: 320
+      effect_list:
+      - Slow Temp
+      - Stop
+      - Fire Flicker
+      flowing: false
+      friendly_name: Table Light
+      max_mireds: 370
+      min_mireds: 153
+      night_light: false
+      state: 'on'
+      supported_features: 47
+- id: '1588413339646'
+  name: Reading Mode
+  entities:
+    light.living_room:
+      brightness: 255
+      color_temp: 250
+      flowing: false
+      state: 'on'
+    light.night_light:
+      state: 'off'
+    light.table_light:
+      state: 'off'

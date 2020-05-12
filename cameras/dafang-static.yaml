@@ -1,0 +1,8 @@
+  - platform: generic
+    name: DaFang
+    username: !secret dafang_user
+    password: !secret dafang_pass
+    authentication: basic
+    still_image_url: !secret dafang_url_static
+    verify_ssl: false
+    scan_interval: 1

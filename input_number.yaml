@@ -1,0 +1,6 @@
+  onkyo_volume:
+    name: Onkyo Volume
+    initial: 30
+    min: 0
+    max: 60
+    step: 1

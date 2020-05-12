@@ -1,0 +1,9 @@
+  - platform: alpha_vantage
+    api_key: !secret key_alphavantage
+    foreign_exchange:
+      - name: Rate USD/RUB
+        from: USD
+        to: RUB
+      - name: Rate EUR/RUB
+        from: EUR
+        to: RUB

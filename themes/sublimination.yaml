@@ -1,0 +1,41 @@
+sublimination:
+  # text colors
+  primary-text-color: "#F2F2F3"
+  secondary-text-color: "#A6E12D"
+  text-primary-color: "#F2F2F3"
+  disabled-text-color: "#E7DB75"
+
+  # main interface colors
+  primary-color: "#F92772"
+  dark-primary-color: "#F92772"
+  light-primary-color: "#60605E"
+
+  # states and badges
+  state-icon-color: "#5a583f"
+  state-icon-active-color: "#ffeb5e"
+
+  # background and sidebar
+  card-background-color: "#272822"
+  primary-background-color: "#4f484f"
+  secondary-background-color: "#4f484f"
+
+  # sidebar menu
+  sidebar-icon-color: "rgba(0, 0, 0, 0.5)"
+  sidebar-selected-text-color: "#A6E12D"
+  sidebar-selected-background-color: "rgba(159, 196, 74, 0.1)"
+  sidebar-selected-icon-color: "#A6E12D"
+
+  # controls
+  toggle-button-color: "#F92772"
+  toggle-button-unchecked-color: "#C4C4C6"
+
+  paper-card-header-color: "#A6E12D"
+  ha-label-badge-label-color: "#000000"
+
+  # for label-badge
+  label-badge-background-color: "#272822"
+  label-badge-text-color: "rgb(255, 255, 255)"
+  label-badge-red: "#A6E12D"
+
+  # derived colors, to keep existing themes mostly working
+  table-row-alternative-background-color: "#433d43"

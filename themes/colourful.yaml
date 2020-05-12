@@ -1,0 +1,116 @@
+# Theme Name
+Colourful:
+  background-image: linear-gradient(230deg, rgb(29, 3, 68), rgb(30, 71, 91) 50%, rgb(144, 57, 73))
+  header-image: hsla(0,0%,100%,.1)
+  secondary-background: var(--background-image)
+
+
+# Colour Palette
+  p-col: "#FF6188"
+  p-light-col: "#ffca47"
+  p-dark-col: "#c66a00"
+  b-col: "#606060"
+  b-light-col: "#8d8d8d"
+  b-dark-col: "#363636"
+  text-on-p: "#000000"
+  text-on-b: "#ffffff"
+
+  colour-pink: "#FF6188"
+  colour-black: "#36454f"
+  colour-white: "#fdfff5"
+  colour-dark-blue: "#36454f"
+  colour-lighter-grey: "#727072"
+  colour-yellow: "#fdbb2d"
+  colour-blue: "#0984FF"
+  colour-aqua: "#488EA3"
+  colour-purple: "#2A56A7"
+  colour-red: "#4f3645"
+  colour-row1: "#7691a2"
+  colour-row2: "#95a9b7"
+
+  button-active: "#fdfff5"
+  button-active-text: "#36454f"
+
+  # red for finding element
+  # var(--colour-finder1)
+  colour-finder1: "#ff0000"
+
+  # green for finding element
+  # var(--colour-finder2)
+  colour-finder2: "#00ff00"
+
+  # cyan for finding element
+  # var(--colour-finder3)
+  colour-finder3: "#00ffff"
+
+  primary-color: var(--colour-yellow) #text on header when it's submenu or selector, color of full dimmer on light - MAYBE REVERSE TO BRIGHT WITH DARK TEXT
+  light-primary-color: var(--colour-red) # color of cirle around username and icons
+  primary-background-color: var(--colour-dark-blue) #checker board on main page and header on subpage
+  secondary-background-color: var(--colour-dark-blue) # alternating lines on state page background of username menu
+  divider-color: var(--primary-background-color) # thin dividing lines on page including dashboard
+  accent-color: var(--colour-pink) # little edit buttons the ones that look like penicls
+
+# Text
+  primary-text-color: var(--colour-white) #HA Name, main titles, letter in username
+  secondary-text-color: var(--colour-yellow)  # secondary text on cards on on pickers and kebabs, through menus
+  text-primary-color: var(--colour-white) # underline on subment in addons
+  disabled-text-color: var(--colour-lighter-grey) # remaining dimmer on a light after current point, donw arrow on menu
+
+  # Sidebar Menu
+  sidebar-icon-color: var(--colour-white) # also include back arrows
+  sidebar-text-color: var(--colour-white)
+  sidebar-selected-background-color: var(--colour-finder1)
+  sidebar-selected-icon-color: var(--colour-white)
+  sidebar-selected-text-color: var(--colour-white)
+  # States and Badges
+  state-icon-color: var(--colour-white)
+  state-icon-active-color: var(--colour-yellow)  # or make light icons yellow when active: rgba(255, 214, 10, 1)
+  state-icon-unavailable-color: var(--colour-finder1)
+
+  # Sliders
+  paper-slider-knob-color: "#FFF"
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--paper-slider-knob-color)
+  paper-slider-active-color: "#0984ff"  # from Apple systemBlue dark mode
+  paper-slider-secondary-color: var(--paper-slider-knob-color)
+  paper-slider-container-color: rgba(255, 255, 255, 0.5)
+  paper-slider-font-color: "#000"
+  ha-slider-background: none !important
+  # Labels
+  label-badge-background-color: "#23232E"
+  label-badge-text-color: "#F1F1F1"
+  label-badge-red: rgba(255, 159, 9, 0.7)  # from Apple systemOrange dark mode
+  # Cards
+  card-background-color: var(--secondary-background-color)  # Unused entities table background
+  paper-listbox-background-color: var(--primary-background-color)
+  ha-card-border-radius: 7px #reduced from 20
+  ha-card-background: "#0a0a0a60"
+  paper-card-background-color: var(--ha-card-background)
+  # Toggles
+  paper-toggle-button-checked-button-color: "#484848"
+  paper-toggle-button-checked-bar-color: "#484848"
+  paper-toggle-button-unchecked-button-color: var(--paper-toggle-button-checked-button-color)
+  paper-toggle-button-unchecked-bar-color: var(--disabled-text-color)
+  # Table row
+  table-row-background-color: var(--colour-row1)
+  table-row-alternative-background-color: var(--colour-row2)
+  # Switches
+  switch-checked-color: "#30d257"  # XXX: remove when https://github.com/home-assistant/home-assistant-polymer/pull/4203 is in HA
+  switch-checked-track-color: "#30d158"  # from Apple systemGreen dark mode
+  switch-checked-button-color: "#FFF"
+  # Other
+  paper-dialog-background-color: rgba(55, 55, 55, 0.6)
+  paper-item-icon-color: white  # also should mini-media-player icon white (but doesn't work by itself)
+  more-info-header-background: rgba(25, 25, 25, 0.5)
+  # Custom
+  mcg-title-letter-spacing: .15em
+  mini-media-player-base-color: white
+  mini-media-player-icon-color: white
+  # mini-media-player-artwork-opacity: 0.7  # causing some bug
+
+  # HACS
+  hacs-badge-color: 'var(--primary-color)'                                         # New Badge
+  hacs-status-installed: 'var(--text-color)'                                      # Installed Icon
+  hacs-status-pending-restart: 'var(--text-light-color)'                          # Restart Icon
+  hacs-status-pending-update: 'var(--accent-color)'
+  

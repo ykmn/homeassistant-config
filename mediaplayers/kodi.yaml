@@ -1,0 +1,12 @@
+  - platform: kodi
+    host: !secret macmini_ip
+    turn_on_action:
+      - service: wake_on_lan.send_magic_packet
+        data:
+          mac: F0:18:98:EC:73:3E
+          broadcast_address: 192.168.1.255
+    turn_off_action:
+      service: kodi.call_method
+      data:
+        entity_id: media_player.kodi
+        method: Application.Quit

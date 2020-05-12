@@ -1,3 +1,11 @@
+# You can whitelist files/folders with !, these will not be ignored.
+!*.yaml
+!/.gitignore
+!.gitignore
+!*.md
+
+
+# Ignore this
 *.pid
 *.xml
 *.csr
@@ -6,29 +14,30 @@
 id_rsa
 id_rsa.pub
 home-assistant.log
-home-assistant_v2*.*
+home-assistant_*.db
+www/pic_*.jpg
+
 *.db-journal
-me.jpg
 *__pycache__*
 *.pyc
 lib
 deps
-tts
-secrets.yaml
-homebridge/config.json
-homebridge/persist/*.*
-known_devices.yaml
-ip_bans.yaml
+
+# Ignore some hidden files
 .DS_Store
 .HA_VERSION
+.homekit.state
 .uuid
-OZW_Log.txt
-*.conf
-pyozw.sqlite
-.*
-!/.gitignore
-!/.travis.yml
-html5_push_registrations.conf
-/icloud/*
-configurator.py
-.storage/*.*
+.shopping_list.json
+
+# Ignore folders
+.storage
+.cloud
+.google.token
+tts
+
+# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+ip_bans.yaml
+secrets.yaml
+known_devices.yaml
+

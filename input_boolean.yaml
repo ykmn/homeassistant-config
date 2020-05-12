@@ -1,0 +1,10 @@
+  vacation_mode:
+    name: Vacation Mode
+    initial: off
+    icon: mdi:beach
+  dark_mode:
+    name: Dark mode
+    icon: mdi:theme-light-dark
+  wakeup:
+    name: Wakeup
+    icon: mdi:weather-sunset-up

@@ -1,36 +1,8 @@
-# change icons
-switch.nuc_wakeonlan:
-  icon: mdi:monitor
-sensor.moscow:
-  icon: mdi:city
-sensor.weather_moscow_humidity:
-  icon: mdi:water-percent
-sensor.weather_moscow_pressure:
-  icon: mdi:speedometer
-sensor.weather_moscow_wind_speed:
-  icon: mdi:weather-windy
-sensor.fastcom_download:
-  icon: mdi:cloud-download
-sensor.airport_express_uptime:
-  icon: mdi:timer
-sensor.airport_express_wan_inbound:
-  icon: mdi:download
-sensor.airport_express_wan_outbound:
-  icon: mdi:upload
-
-# show-hide items
 media_player.computer_airtunes_speaker:
   hidden: true
 media_player.txnr545_airtunes_speaker:
   hidden: true
-#group.tabAutoScenes:
-#  order: '1'
-#group.tabClockWeather:
-#  order: '2'
-#group.tabSystem:
-#  order: '3'
 
-# rename items
 group.all_automations:
   hidden: false
   name: All Automations
@@ -38,12 +10,74 @@ group.all_scripts:
   hidden: false
   name: All Scenes
 
-# group
-group.room:
-  entity_id:
-  - light.living_room
-  - light.table_light
-  - vacuum.roomba
-  - media_player.itunes
-  - media_player.onkyo_receiver
-  - switch.macmini_wakeonlan
+person.roman:
+  entity_picture: /local/pic_roman.jpg
+person.mitya:
+  entity_picture: /local/pic_mitya.jpg
+
+sensor.bus_to_work:
+  icon: mdi:bus
+sensor.tram_to_work:
+  icon: mdi:tram
+sensor.ssl_europaplus_ru:
+  friendly_name: SSL europaplus.ru
+sensor.ssl_livcey_com_ru:
+  friendly_name: SSL livcey.com.ru
+sensor.ssl_ykmn_synology_me:
+  friendly_name: SSL ykmn.synology.me
+sensor.living_room_humidity:
+  icon: mdi:water
+sensor.owm_humidity:
+  icon: mdi:water-outline
+sensor.living_room_temperature:
+  icon: mdi:home-thermometer
+sensor.u_s_main_pollutant:
+  friendly_name: Air main pollutant
+sensor.u_s_air_quality_index:
+  friendly_name: Air quality index
+sensor.u_s_air_pollution_level:
+  friendly_name: Air pollution level
+sensor.ups_runtime_minutes:
+  friendly_name: APC UPS Battery Runtime
+  icon: mdi:timer
+sensor.humidifier_depth:
+  icon: mdi:car-coolant-level
+
+script.onkyo_pc:
+  icon: mdi:desktop-mac-dashboard
+script.onkyo_fm:
+  icon: none
+script.lights_sleep:
+  icon: mdi:sleep
+script.lights_wakeup:
+  icon: mdi:weather-sunset-up
+
+switch.transmission_switch:
+  hidden: true
+
+scene.turn_everything_off:
+  icon: mdi:lightbulb-off-outline
+scene.i_m_home:
+  icon: mdi:home
+scene.movie_mode:
+  icon: mdi:movie
+scene.all_lights_on:
+  icon: mdi:lightbulb-on-outline
+scene.evening_lights:
+  icon: mdi:weather-night
+
+input_boolean.vacation_mode:
+  icon: mdi:beach
+
+input_number.onkyo_volume:
+  icon: mdi:volume-source
+
+input_select.theme_dark:
+  icon: mdi:weather-night
+input_select.theme_light:
+  icon: mdi:white-balance-sunny
+
+automation.frontend_dark_mode_auto:
+  icon: none
+automation.frontend_light_mode_auto:
+  icon: none

@@ -1,0 +1,19 @@
+#  - platform: nut
+#    name: APC UPS
+#   alias: ups
+#    username: !secret nut_user
+#    password: !secret nut_pass
+#    resources:
+#      - battery.runtime
+#      - battery.voltage
+#      - battery.charge
+#      - ups.status.display
+#      - ups.load
+#      - input.voltage
+#      - ups.realpower.nominal
+  - platform: template
+    sensors:
+      ups_runtime_minutes:
+        friendly_name: "APC UPS Battery runtime"
+        unit_of_measurement: 'minutes'
+        value_template: "{{ states('sensor.apc_ups_battery_runtime')|int / 60 }}"

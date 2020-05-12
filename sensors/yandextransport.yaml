@@ -1,0 +1,10 @@
+  - platform: yandex_transport
+    name: Bus to work
+    stop_id: !secret yt_bustowork
+    routes:
+      - 74
+  - platform: yandex_transport
+    name: Tram to work
+    stop_id: !secret yt_tramtowork
+    routes:
+      - 45

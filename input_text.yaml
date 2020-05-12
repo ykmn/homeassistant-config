@@ -1,0 +1,4 @@
+  add_torrent:
+    name: Add torrent
+    initial: 'magnet:?xt=urn:btih:HASH'
+    max: 255

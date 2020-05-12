@@ -1,0 +1,113 @@
+  purge_keep_days: 31
+  exclude:
+    domains:
+      - automation
+      - binary_sensor
+      - updater
+      - weblink
+      - camera
+      - media_player
+      - scene
+      - switch
+      - script
+      - calendar
+      - sun
+      - input_boolean
+      - input_datetime
+      - input_number
+      - input_select
+      - input_text
+    entities:
+      - sensor.date
+      - sensor.date_time
+      - sensor.date_time
+      - sensor.date_time_utc
+      - sensor.time
+      - sensor.time_date
+      - sensor.time_utc
+      - sensor.moon
+      - sensor.moscow
+      - sensor.new_york
+      - sensor.novosibirsk
+      - sensor.paris
+      - sensor.utc
+
+      - sensor.adguard_average_processing_speed
+      - sensor.adguard_dns_queries
+      - sensor.adguard_dns_queries_blocked_ratio
+      - sensor.adguard_dns_queries_blocked_ratio
+      - sensor.adguard_safe_browsing_blocked
+      - sensor.adguard_safe_searches_enforced
+
+      - sensor.bus_to_work
+      - sensor.tram_to_work
+
+      - sensor.cert_expiry_europaplus_ru
+      - sensor.cert_expiry_europaplus_ru
+      - sensor.cert_expiry_ykmn_duckdns_org_8124
+      - sensor.cert_expiry_ykmn_duckdns_org_8124
+      - sensor.cert_expiry_ykmn_duckdns_org_8124
+
+      - sensor.livcey_com_ru_domain_name_expiry
+      - sensor.europaplus_ru_domain_name_expiry
+
+      - sensor.hacs
+
+      - sensor.iphone_11_plus_activity
+      - sensor.iphone_11_plus_average_active_pace
+      - sensor.iphone_11_plus_bssid
+      - sensor.iphone_11_plus_floors_ascended
+      - sensor.iphone_11_plus_floors_descended
+      - sensor.iphone_11_plus_last_update_trigger
+      - sensor.iphone_11_plus_sim_1
+      - sensor.iphone_11_plus_sim_2
+      - sensor.iphone_11_plus_steps
+
+      - sensor.twelve_s_ipad_pro_battery_level
+      - sensor.twelve_s_ipad_pro_battery_state
+      - sensor.twelve_s_ipad_pro_bssid
+      - sensor.twelve_s_ipad_pro_connection_type
+      - sensor.twelve_s_ipad_pro_last_update_trigger
+      - sensor.twelve_s_ipad_pro_sim_1
+      - sensor.twelve_s_ipad_pro_ssid
+
+      - sensor.ipv4_address_eth0
+      - sensor.network_in_eth0
+      - sensor.network_out_eth0
+
+      - sensor.keenetic_viva_bytes_received
+      - sensor.keenetic_viva_bytes_sent
+      - sensor.keenetic_viva_kb_sec_received
+      - sensor.keenetic_viva_kb_sec_sent
+      - sensor.keenetic_viva_packets_received
+      - sensor.keenetic_viva_packets_sec_received
+      - sensor.keenetic_viva_packets_sec_sent
+      - sensor.keenetic_viva_packets_sent
+
+      - sensor.seventeentrack_packages_delivered
+      - sensor.seventeentrack_packages_expired
+      - sensor.seventeentrack_packages_in_transit
+      - sensor.seventeentrack_packages_not_found
+      - sensor.seventeentrack_packages_ready_to_be_picked_up
+      - sensor.seventeentrack_packages_returned
+      - sensor.seventeentrack_packages_undelivered
+
+      - sensor.synology_dsm_cpu_load_total
+      - sensor.synology_dsm_memory_usage_real
+      - sensor.synology_dsm_network_down
+      - sensor.synology_dsm_network_up
+
+      - sensor.transmission_active_torrents
+      - sensor.transmission_completed_torrents
+      - sensor.transmission_completed_torrents
+      - sensor.transmission_paused_torrents
+      - sensor.transmission_started_torrents
+      - sensor.transmission_status
+      - sensor.transmission_status
+
+      - media_player.computer_airtunes_speaker
+      - media_player.macmini
+      - media_player.macmini_airtunes_speaker
+      - media_player.macmini_ex_airtunes_speaker
+      - media_player.onkyo_receiver_zone_2
+      - media_player.onkyo_receiver_zone_2

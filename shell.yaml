@@ -1,7 +1,6 @@
-sleep_nuc: "ssh twelve@192.168.1.118 pmset sleepnow"
 speak_goodmorning: tts "Good morning."
 speak_afternoon: tts "Good afternoon."
 speak_evening: tts "Good evening."
 speak_sys_up: tts "All Systems Online"
 speak_sys_dn: tts "System Offline"
-sleep_macmini: "ssh twelve@192.168.1.124 pmset sleepnow"
+sleep_macmini: ssh -i /config/ssh/id_rsa -o StrictHostKeyChecking=no twelve@192.168.1.63 'pmset sleepnow'

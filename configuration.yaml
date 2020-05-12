@@ -1,15 +1,17 @@
 homeassistant:
+# Set this in GUI since 0.94
   # Name of the location where Home Assistant is running
-  name: Home
+#  name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: !secret geo_lattitude_home
-  longitude: !secret geo_longitude_home
+#  latitude: !secret geo_lattitude_home
+#  longitude: !secret geo_longitude_home
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 123
+#  elevation: 123
   # metric for Metric, imperial for Imperial
-  unit_system: metric
+#  unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: Europe/Moscow
+#  time_zone: Europe/Moscow
+
   customize: !include customize.yaml
   packages: !include_dir_named packages/
   auth_providers:
@@ -17,25 +19,89 @@ homeassistant:
 #    - type: legacy_api_password
 #      api_password: !secret http_password
 
+# Default Config was introduced in 0.88
+default_config:
 # System Health was introduced in 0.87
+# Included in default_config
 system_health:
-
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-http:
-  base_url: !secret http_baseurl
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
-
-# Show links to resources in log and frontend
-#introduction:
-
+# Enables configuration UI
+# Included in default_config
+config:
+# Cloud allows you to quickly integrate your local Home Assistant with
+# various cloud services like Amazon Alexa and Google Assistant
+# Included in default_config
+cloud:
 # Enables the frontend
+# Included in default_config
 frontend:
   themes: !include_dir_merge_named themes/
   javascript_version: latest
+# Simple Service Discovery Protocol integration introduced in 0.94
+# Included in default_config
+ssdp:
+# Scan the network for supported devices and mDNS services
+# Included in default_config
+zeroconf:
+# Tracks everything that is going on within Home Assistant
+# Included in default_config
+history: !include logbook_history.yaml
+# Filter events in a logbook
+# Included in default_config
+logbook: !include logbook_history.yaml
+# Enables support for tracking state changes over time
+recorder: !include recorder.yaml
+
+# Enables a map showing the location of tracked devices
+# Included in default_config
+map:
+# Track the sun
+# Included in default_config
+sun:
+# Mobile app support
+# Included in default_config
+mobile_app:
+# The person integration allows connecting device tracker entities to
+# one or more person entities.
+# Included in default_config
+person:
+# Checks for available updates
+# Included in default_config
+updater:
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# The conversation integration allows you to converse with Home Assistant.
+# You can either converse by pressing the microphone in the frontend (supported browsers only, no iOS)
+# or by calling the conversation/process service with the transcribed text.
+conversation:
+
+# Discover some devices automatically
+# https://www.home-assistant.io/integrations/discovery/
+discovery:
+  enable:
+# Homekit is enabled by default since 0.94
+#    - homekit
+#    - yeelight
+  ignore:
+    - yeelight
+#uPNP Integration enables you to collect network statistics from your router
+upnp:
+  sensors: true
+  local_ip: !secret hassio_ip
+
+# HTTP serves all files and data required for the Home Assistant frontend
+http:
+#  base_url: !secret https_baseurl
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
 
 # Enables companion component for the Home Assistant iOS app
-ios:
+#ios:
 
 # Enables HomeKit
 homekit:
@@ -44,6 +110,10 @@ homekit:
       - media_player
       - light
       - switch
+      - camera
+      - fan
+    exclude_entities:
+      - switch.transmission_switch
   entity_config:
     media_player.onkyo_receiver:
       feature_list:
@@ -55,76 +125,18 @@ homekit:
         - feature: play_stop
         - feature: toggle_mute
 
-# Enables configuration UI
-config:
-
-# Embed Hass.IO add-on
+# Embed Hass.IO add-ons, allows to add additional panels to
+# your Home Assistant frontend sidebar
 panel_iframe:
-  configurator:
-    title: Configurator
-    icon: mdi:wrench
-    url: http://hassio.local:8080
-  logviewer:
-    title: Log Viewer
-    icon: mdi:script
-    url: http://hassio.local:4277
-#  grafana:
-#    title: Grafana
-#    icon: mdi:chart-timeline
-#    url: http://hassio.local:3000
-#  influxdb:
-#    title: InfluxDB
-#    url: http://hassio.local:8888
-
-# Adding InfluxDB add-on
-#influxdb:
-#  host: a0d7b954-influxdb
-#  port: 8086
-#  database: homeassistant
-#  username: !secret influxdb_user
-#  password: !secret influxdb_password
-#  max_retries: 3
-#  default_measurement: state
-#  include:
-#    entities:
-#       - sensor.airport_express_wan_inbound
-#       - sensor.airport_express_wan_outbound
-
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
-
-# Discover some devices automatically
-discovery:
-  enable:
-    - homekit
-  ignore:
-    - yeelight
-
-# Allows you to issue voice commands from the frontend in enabled browsers
-conversation:
-
-# Enables support for tracking state changes over time
-history:
-recorder:
-  purge_keep_days: 31
-
-# Filter events in a logbook
-logbook:
-  exclude:
-    domains:
-      - sensor
-
-# Enables a map showing the location of tracked devices
-map:
-
-# Track the sun
-sun:
+  mdiindex:
+    title: MDI Icon Index
+    icon: mdi:vector-square
+#   url: https://cdn.rawgit.com/james-fry/home-assistant-mdi/efd95d7a/home-assistant-mdi.html
+    url: https://dev.materialdesignicons.com/icons
+  transmission:
+    title: Transmission
+    icon: mdi:car-shift-pattern
+    url: !secret transmission_url
 
 # Log setup
 # Log Severities: notset, debug, info, warn, warning, error, fatal, critical
@@ -132,54 +144,48 @@ logger:
   default: info
   logs:
     homeassistant.components.light.yeelight: warning
-    homeassistant.components.media_player.itunes: warning
-    homeassistant.components.media_player.onkyo_receiver: debug
-
-# Cloud
-cloud:
+    homeassistant.components.vacuum: critical
+    homeassistant.components.media_player.itunes: critical
+    homeassistant.components.media_player.onkyo: debug
+    homeassistant.components.fan: warning
+    homeassistant.components.fan.xiaomi_miio: warning
+    onkyo: debug
+    miio: warning
 
 # Enables WOL service
 wake_on_lan:
 
-# Macros of Shell commands
-shell_command: !include shell.yaml
-script: !include scripts.yaml
+# Includes:
 media_player: !include_dir_merge_list mediaplayers/
 sensor: !include_dir_merge_list sensors/
+binary_sensor: !include binary_sensors.yaml
 camera: !include_dir_merge_list cameras/
+switch: !include_dir_merge_list switches/
+script: !include scripts.yaml
+automation: !include automations.yaml
+shell_command: !include shell.yaml
+fan: !include fans.yaml
+scene: !include scenes.yaml
+input_select: !include input_select.yaml
+input_boolean: !include input_boolean.yaml
+input_text: !include input_text.yaml
+input_number: !include input_number.yaml
+input_datetime: !include input_datetime.yaml
 #group: !include groups.yaml
 
-automation: !include automations.yaml
-scene: !include scenes.yaml
-switch: !include_dir_merge_list switches/
-#light: !include lights.yaml
-
-vacuum:
-  - platform: roomba
-    name: Roomba
-    host: !secret ip_roomba
-    username: !secret roomba_blid
-    password: !secret roomba_password
-    continuous: false
-
-weather:
-  - platform: yweather
-  - platform: openweathermap
-    api_key: !secret key_openweathermap
+weather: !include weather.yaml
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
   - platform: yandextts
-    api_key: key_yandextts
+    api_key: !secret key_yandextts
     language: 'ru-RU'
     codec: mp3
-    voice: oksana
+    voice: zahar
     emotion: good
     speed: 2
-
-# Theme selector
-input_select: !include input_select.yaml
 
 # Setting zones
 zone:
@@ -194,18 +200,22 @@ zone 2:
   longitude: !secret geo_longitude_office
   radius: 200
   icon: mdi:worker
+zone 3:
+  name: Khimki
+  latitude: !secret geo_lattitude_khimki
+  longitude: !secret geo_longitude_khimki
+  radius: 200
+  icon: mdi:home
 
 # Yeelight
-yeelight:
-  devices:
-    192.168.1.130:
-      name: Living Room
-      transition: 800
-      use_music_mode: True
-    192.168.1.128:
-      name: Table Light
-      transition: 600
-      use_music_mode: True
+yeelight: !include yeelight.yaml
+light:
+  - platform: group
+    name: All Lights
+    entities:
+      - light.living_room
+      - light.night_light
+      - light.table_light
 
 # Speedtest.com
 speedtestdotnet:
@@ -215,3 +225,60 @@ speedtestdotnet:
     - ping
     - download
     - upload
+
+# since 0.100 install MQTT-addon, create mqtt-user in Users and use Integrations:
+# Mosquitto broker
+#mqtt:
+#  broker: localhost
+#  discovery: true
+#  discovery_prefix: homeassistant
+
+# Live Camera Stream for Lovelace Picture was introduced in 0.90
+stream:
+
+# Keenetic device tracker
+device_tracker:
+  - platform: keenetic_ndms2
+    host: !secret keenetic_ip
+    username: !secret keenetic_user
+    password: !secret keenetic_password
+    interval_seconds: 180
+    consider_home: 0:15
+    new_device_defaults:
+      track_new_devices: false
+  - platform: bluetooth_tracker
+    consider_home: 0:03
+    request_rssi: true
+  - platform: nmap_tracker
+    hosts: 192.168.1.1/24
+    home_interval: 15
+
+# Allows to monitor the proximity of devices to a particular zone and the direction of travel
+proximity:
+  home:
+    ignored_zones:
+      - Home
+    devices:
+      - device_tracker.iphone_11_plus
+    tolerance: 50
+    unit_of_measurement: km
+
+# Transmission is now on Integrations
+#transmission:
+#  host: !secret transmission_ip
+#  port: 9091
+#  username: !secret transmission_user
+#  password: !secret transmission_password
+
+# AirVisual is now on Integrations
+#airvisual:
+#  api_key: !secret key_airvisual
+#  geographies:
+#    latitude: !secret geo_lattitude_home
+#    longitude: !secret geo_longitude_home
+
+roomba:
+    host: !secret roomba_ip
+    blid: !secret roomba_blid
+    password: !secret roomba_password
+    continuous: false

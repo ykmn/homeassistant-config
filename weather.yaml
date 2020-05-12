@@ -1,0 +1,6 @@
+##############################
+##  WEATHER
+##############################
+#  - platform: yweather
+  - platform: openweathermap
+    api_key: !secret key_openweathermap

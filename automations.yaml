@@ -1,25 +1,40 @@
-- id: Set-Dark-Theme-for-the-night
-  alias: Auto set Dark Theme for the night
+- id: Frontend-Mode-Dark
+  alias: 'Frontend: Dark mode auto'
   trigger:
   - event: sunset
     offset: -00:30:00
     platform: sun
   action:
-  - data:
-      name: midnight
-    service: frontend.set_theme
-  initial_state: true
-- id: Set-Default-Theme-for-the-day
-  alias: Auto set Bright Theme for the day
+    entity_id: input_boolean.dark_mode
+    service: input_boolean.turn_on
+- id: Frontend-Mode-Light
+  alias: 'Frontend: Light mode auto'
   trigger:
   - event: sunrise
-    offset: -00:30:00
+    offset: +00:30:00
     platform: sun
   action:
-  - data:
-      name: blue-grey
+    entity_id: input_boolean.dark_mode
+    service: input_boolean.turn_off
+- id: Frontend-DarkLightTheme
+  alias: 'Frontend: allow switch dark/light themes'
+  trigger:
+  - platform: state
+    entity_id: input_select.theme_dark
+  - platform: state
+    entity_id: input_select.theme_light
+  - platform: state
+    entity_id: input_boolean.dark_mode
+  - platform: homeassistant
+    event: start
+  action:
     service: frontend.set_theme
-  initial_state: true
+    data_template:
+      name: '{% set which = states("input_select.theme_dark") if is_state("input_boolean.dark_mode",
+        "on") else states("input_select.theme_light") -%} {% set name = states("input_select.current_theme")
+        -%} {{ which }}
+
+        '
 - id: Change-Current-Theme
   alias: Allow Change Current Theme
   initial_state: 'on'
@@ -33,18 +48,21 @@
     data_template:
       name: '{{states.input_select.current_theme.state}}'
 - id: Morning-Lights-Off
-  alias: Turn off light at 9:15
+  alias: Turn off light at 8:55
   trigger:
+  - at: '8:55:00'
     platform: time
-    at: '9:15:00'
   condition:
   - condition: time
     weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - condition: state
+    entity_id: light.living_room
+    state: 'on'
   action:
   - entity_id: light.living_room
     service: light.turn_off
@@ -52,27 +70,117 @@
 - id: Updater
   alias: Send notifications when Home Assistant update available
   trigger:
+  - entity_id: binary_sensor.updater
+    from: 'off'
     platform: state
-    entity_id: updater.updater
+    to: 'on'
   action:
-    service: notify.notify
-    data:
+  - data:
       message: Update for Home Assistant is available.
+    service: notify.notify
 - id: Sunrise
-  alias: Turn on light at 8:10
+  alias: Turn on light at 7:00
   trigger:
-  - platform: time
-    at: 08:10:00
+  - at: 07:00:00
+    platform: time
   condition:
-  - condition: time
-    weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
   - condition: state
-    entity_id: group.all_devices
+    entity_id: device_tracker.dmitrys_iphone
     state: home
+  - condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'off'
   action:
-    service: script.lights_wakeup
+  - service: script.lights_wakeup
+- id: Lights-Come-Home
+  alias: Turn on light when I come home
+  description: ''
+  trigger:
+  - entity_id: person.roman
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - entity_id: scene.evening_lights
+    service: scene.turn_on
+- id: Tune-FM-preset
+  alias: Select FM radio preset automatically
+  trigger:
+  - entity_id: input_select.radio_station
+    platform: state
+  action:
+  - service: script.onkyo_fm
+
+- id: Wakeup Lights
+  alias: Wakeup Light
+  trigger:
+  - platform: template
+    value_template: '{{ states(''sensor.time'') == (states.input_datetime.wakeup_time.attributes.timestamp
+      | int | timestamp_custom(''%H:%M'', False)) }}'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.wakeup
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+  action:
+  - data:
+      brightness_pct: 10
+      color_name: red
+      transition: 60
+    entity_id: light.living_room
+    service: light.turn_on
+  - delay: 00:01:00
+  - data:
+      brightness_pct: 70
+      color_name: orange
+      transition: 120
+    entity_id: light.living_room
+    service: light.turn_on
+  - delay: 00:02:00
+  - data:
+      brightness_pct: 80
+      color_name: gold
+      transition: 120
+    entity_id: light.living_room
+    service: light.turn_on
+  - delay: 00:02:00
+  - data:
+      brightness_pct: 100
+      kelvin: 2700
+      transition: 60
+    entity_id: light.living_room
+    service: light.turn_on
+
+- id: Onkyo_Volume_Set
+  alias: Onkyo Volume Slider Set
+  trigger:
+  - platform: state
+    entity_id: input_number.onkyo_volume
+  condition:
+  - condition: state
+    entity_id: media_player.onkyo_receiver
+    state: 'on'
+  action:
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.onkyo_receiver
+      volume_level: '{{ states.input_number.onkyo_volume.state | float / 80 }}'
+- id: Onkyo_Volume_Get
+  alias: Onkyo Volume Slider Get
+  trigger:
+    platform: state
+    entity_id: media_player.onkyo_receiver
+  action:
+    service: input_number.set_value
+    data_template:
+      entity_id: input_number.onkyo_volume
+      value: '{{ states.media_player.onkyo_receiver.attributes.volume_level | float
+        * 80 }}'

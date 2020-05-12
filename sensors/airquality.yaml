@@ -1,0 +1,8 @@
+  - platform: waqi
+    token: !secret key_AQI
+    locations:
+      - Moscow
+    stations:
+      - shabol
+      - suhar
+      - spirid
