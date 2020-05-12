@@ -3,6 +3,7 @@ Home Assistant Configuration, home-assistant.io
 ==================
 
 Homeassistant version: 0.109.6
+
 Using Lovelace UI
 
 [GitHub](https://github.com/ykmn/homeassistant-config)
@@ -92,17 +93,31 @@ customize:
 Hass.io Integrations:
 ==================
 AdGuard
+
 AirVisual
+
 Certificate Expiry
+
 COVID-19
+
 HACS (use [installation manual](https://hacs.xyz/docs/installation/prerequisites))
+
 HomeAssistant iOS
+
 Local IP Address
+
 Meteorologisk institutt
+
 MQTT
+
 Network UPS Tools
+
 iRobot Roomba
+
 Shopping List
+
 Synology DSM
+
 Transmission
+
 UPnP
