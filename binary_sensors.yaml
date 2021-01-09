@@ -1,9 +1,10 @@
-  - platform: tod
-    name: Night
-    after: sunset
-    before: sunrise
-  - platform: workday
-    country: RU
-    name: Workday Sensor
-    workdays: [mon, tue, wed, thu, fri]
-    excludes: [sat, sun, holiday]
+#  - platform: tod
+#    name: Night
+#    after: sunset
+#    before: sunrise
+
+#  - platform: workday
+#    country: RU
+#    name: Workday Sensor
+#    workdays: [mon, tue, wed, thu, fri]
+#    excludes: [sat, sun, holiday]

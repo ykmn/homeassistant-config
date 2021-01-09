@@ -1,0 +1,32 @@
+homeassistant:
+  customize:
+    sensor.owm_humidity:
+      icon: mdi:water-outline
+    package.node_anchors:
+      customize: &customize
+        package: 'weather'
+
+sensor:
+  - platform: moon
+  - platform: template
+    sensors:
+      outdoor_temperature:
+        friendly_name: "Outdoor temperature"
+        unit_of_measurement: '°C'
+        value_template: "{{ state_attr('weather.openweathermap', 'temperature') }}"
+      outdoor_humidity:
+        friendly_name: "Outdoor Humidity"
+        unit_of_measurement: '%'
+        value_template: "{{ state_attr('weather.openweathermap', 'humidity') }}"
+  - platform: waqi
+    token: !secret key_AQI
+    locations:
+      - Moscow
+    stations:
+      - shabol
+      - suhar
+      - spirid
+
+#weather:
+#  - platform: openweathermap
+#    api_key: !secret key_openweathermap

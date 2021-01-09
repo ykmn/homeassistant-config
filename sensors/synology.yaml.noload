@@ -1,0 +1,19 @@
+#  - platform: synology_dsm
+#    port: 5001
+#    ssl: true
+#    host: !secret synology_ip
+#    username: !secret synology_user
+#    password: !secret synology_pass
+#    monitored_conditions:
+#      - cpu_total_load
+#      - memory_real_usage
+#      - network_up
+#      - network_down
+#      - disk_smart_status
+#      - disk_status
+#      - disk_exceed_bad_sector_thr
+#      - disk_below_remain_life_thr
+#      - disk_temp
+#      - volume_status
+#      - volume_percentage_used
+#      - volume_disk_temp_max

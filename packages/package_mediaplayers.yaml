@@ -1,0 +1,63 @@
+homeassistant:
+  customize:
+    package.node_anchors:
+      customize: &customize
+        package: 'MediaPlayers'
+
+media_player:
+#  - platform: kodi
+#    host: !secret rpi4_ip
+#    name: Kodi RPi4
+### WOL/Shutdown Kodi
+#    turn_on_action:
+#      - service: wake_on_lan.send_magic_packet
+#        data:
+#          mac: !secret rpi4_mac
+#          broadcast_address: 192.168.1.255
+#    turn_off_action:
+#      service: kodi.call_method
+#      data:
+#        entity_id: media_player.kodi_rpi4
+#        method: System.Shutdown
+
+### HDMI CEC TV turn on/off
+#    turn_on_action:
+#      service: kodi.call_method
+#      data:
+#        entity_id: media_player.kodi_rpi4
+#        method: Addons.ExecuteAddon
+#        addonid: script.json-cec
+#        params:
+#          command: activate
+#    turn_off_action:
+#    - service: media_player.media_stop
+#      data:
+#        entity_id: media_player.kodi_rpi4
+#    - service: kodi.call_method
+#      data:
+#        entity_id: media_player.kodi_rpi4
+#        method: Addons.ExecuteAddon
+#        addonid: script.json-cec
+#        params:
+#          command: standby
+
+  - platform: itunes
+    host: !secret macmini_ip
+
+spotify:
+  client_id: !secret spotify_id
+  client_secret: !secret spotify_secret
+
+logger:
+  logs:
+    homeassistant.components.media_player.itunes: critical
+
+script:
+  update_library:
+    alias: Update Kodi Library
+    sequence:
+      - alias: Call Kodi update
+        service: kodi.call_method
+        data:
+          entity_id: media_player.kodi_rpi4
+          method: VideoLibrary.Scan

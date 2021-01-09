@@ -12,7 +12,3 @@
         arg: eth0
       - type: processor_use
       - type: last_boot
-  - platform: version
-  - platform: version
-    name: Version Available
-    source: hassio

@@ -4,8 +4,6 @@ indigo:
   primary-color: "#3f51b5"
 light-blue:
   primary-color: "#03a9f4"
-teal:
-  primary-color: "#009688"
 amber:
   primary-color: "#ffc107"
 grey:

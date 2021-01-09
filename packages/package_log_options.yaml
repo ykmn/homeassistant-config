@@ -1,0 +1,91 @@
+# This is settings for Home Assistant system logs
+logger:
+  default: warn
+  logs:
+    pubnub: critical
+#    homeassistant.components.homekit_controller.config_flow: debug
+    urllib3.connectionpool: error
+    homeassistant.components.rest: warn
+    homeassistant.components.zha: warn
+    homeassistant.components.camera: warn
+    homeassistant.components.sun: warn
+    homeassistant.components.remote: warn
+    homeassistant.components.switch: warn
+    homeassistant.components.sensor: error
+    homeassistant.components.sensor.snmp: critical
+    homeassistant.components.script: warn
+    homeassistant.components.tts: warn
+    homeassistant.components.media_player: warn
+    homeassistant.components.input_select: warn
+    homeassistant.components.input_number: critical
+    homeassistant.components.http: warn
+    homeassistant.components.shell_command: warn
+    homeassistant.components.device_tracker: critical
+    homeassistant.components.mqtt: warn
+    homeassistant.components.automation: warn
+    homeassistant.components.websocket: warn
+    homeassistant.components.discovery: warn
+    homeassistant.components.light: warn
+    homeassistant.components.ecobee: warn
+    homeassistant.custom_components: warn
+    homeassistant.components.camera.usps: warn
+    homeassistant.components.usps: warn
+    homeassistant.components.sensor.usps: warn
+    homeassistant.components.feedreader: warn
+    homeassistant.components: warn
+    homeassistant.components.binary_sensor: error
+    bellows.uart: warn
+    homeassistant.core: critical
+    homeassistant.helpers.script: warn
+    homeassistant.helpers.entity: error
+    homeassistant.helpers.restore_state: warn
+    homeassistant.loader: warn
+    homeassistant.setup: warn
+    homeassistant.components.http.ban: error
+    requests.packages.urllib3.connectionpool: fatal
+    urllib3.connectionpool.py: fatal
+    homeassistant.components.vacuum: critical
+
+homeassistant:
+  customize:
+    package.node_anchors:
+      customize: &customize
+        package: 'logger'
+    input_select.log_level:
+      icon: mdi:script-text-outline
+
+
+group:
+  logger_input_select_card:
+    name: Log Level
+    entities:
+      - input_select.log_level
+
+
+################### Logger level
+input_select:
+  log_level:
+    name: Log Level
+    options:
+     - warn
+     - fatal
+     - error
+     - warning
+     - info
+     - debug
+     - notset
+    initial: error
+
+
+
+############################# Sets Logging Level
+automation:
+  - id: set_ha_log_level
+    alias: Set HA Log Level
+    trigger:
+      - platform: state
+        entity_id: input_select.log_level
+    action:
+      - service: logger.set_level
+        data_template:
+          homeassistant.components: "{{ trigger.to_state.state }}"

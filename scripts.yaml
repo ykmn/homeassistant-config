@@ -3,16 +3,19 @@ lights_wakeup:
   sequence:
   - data:
       brightness_pct: 5
-      entity_id: light.living_room
+      entity_id: light.bedroom_light
       transition: 2
       white_value: 50
     service: light.turn_on
   - data:
       brightness_pct: 100
-      entity_id: light.living_room
+      entity_id: light.bedroom_light
       transition: 30
       white_value: 250
     service: light.turn_on
+
+
+
 lights_sleep:
   alias: Go to Sleep script
   sequence:
@@ -20,17 +23,14 @@ lights_sleep:
     entity_id: light.table_light
     service: light.turn_off
   - data: {}
-    entity_id: media_player.onkyo_receiver
-    service: media_player.turn_off
-  - data: {}
-    entity_id: light.night_light
+    entity_id: light.office_light
     service: light.turn_off
   - data:
       brightness: 15
       color_temp: 330
-      entity_id: light.living_room
+      entity_id: light.bedroom_light
       transition: 500
-    entity_id: light.living_room
+    entity_id: light.bedroom_light
     service: light.turn_on
   - data:
       brightness: 5
@@ -44,38 +44,39 @@ lights_sleep:
       transition: 500
     entity_id: all
     service: light.turn_off
-onkyo_pc:
-  alias: 'Onkyo: Select MacMini input'
-  sequence:
-  - service: media_player.turn_on
-    data:
-      entity_id: media_player.onkyo_receiver
-  - service: media_player.select_source
-    data:
-      entity_id: media_player.onkyo_receiver
-      source: pc
-onkyo_fm:
-  alias: 'Onkyo: Select FM Radio preset'
-  sequence:
-  - service: media_player.turn_on
-    data:
-      entity_id: media_player.onkyo_receiver
-  - service: media_player.select_source
-    data:
-      entity_id: media_player.onkyo_receiver
-      source: fm
-  - service: media_player.play_media
-    data_template:
-      entity_id: media_player.onkyo_receiver
-      media_content_type: radio
-      media_content_id: '{%   if is_state("input_select.radio_station", "Europa Plus")
-        %}1 {%-elif is_state("input_select.radio_station", "Retro FM")%}2 {%-elif
-        is_state("input_select.radio_station", "Radio 7") %}3 {%-elif is_state("input_select.radio_station",
-        "Studio21") %}4 {%-elif is_state("input_select.radio_station", "Novoe Radio")
-        %}5 {%-elif is_state("input_select.radio_station", "Dorognoe Radio") %}6 {%-elif
-        is_state("input_select.radio_station", "Love Radio") %}7 {%-elif is_state("input_select.radio_station",
-        "NRJ") %}8 {%-elif is_state("input_select.radio_station", "DFM") %}9 {%-elif
-        is_state("input_select.radio_station", "Mayak") %}10 {% endif %}'
+
+#onkyo_pc:
+#  alias: 'Onkyo: Select TV input'
+#  sequence:
+#  - data:
+#      entity_id: media_player.onkyo_receiver
+#    service: media_player.turn_on
+#  - data:
+#      entity_id: media_player.onkyo_receiver
+#      source: tv
+#    service: media_player.select_source
+#onkyo_fm:
+#  alias: 'Onkyo: Select FM Radio preset'
+#  sequence:
+#  - service: media_player.turn_on
+#    data:
+#      entity_id: media_player.onkyo_receiver
+#  - service: media_player.select_source
+#    data:
+#      entity_id: media_player.onkyo_receiver
+#      source: fm
+#  - service: media_player.play_media
+#    data_template:
+#      entity_id: media_player.onkyo_receiver
+#      media_content_type: radio
+#      media_content_id: '{%   if is_state("input_select.radio_station", "Europa Plus")
+#        %}1 {%-elif is_state("input_select.radio_station", "Retro FM")%}2 {%-elif
+#        is_state("input_select.radio_station", "Radio 7") %}3 {%-elif is_state("input_select.radio_station",
+#        "Studio21") %}4 {%-elif is_state("input_select.radio_station", "Novoe Radio")
+#        %}5 {%-elif is_state("input_select.radio_station", "Dorognoe Radio") %}6 {%-elif
+#        is_state("input_select.radio_station", "Love Radio") %}7 {%-elif is_state("input_select.radio_station",
+#        "NRJ") %}8 {%-elif is_state("input_select.radio_station", "DFM") %}9 {%-elif
+#        is_state("input_select.radio_station", "Mayak") %}10 {% endif %}'
 add_torrent:
   alias: Add torrent
   sequence:

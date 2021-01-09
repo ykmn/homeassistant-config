@@ -1,106 +1,106 @@
-  current_theme:
-    name: 'Current Theme'
-    options:
-      - 'default'
-      - 'aqua-fiesta'
-      - 'amber'
-      - 'blue-grey'
-      - 'carbon-green'
-      - 'Colourful'
-      - 'dark'
-      - 'dark_teal'
-      - 'deep-purple'
-      - 'grey'
-      - 'hopscotch-dark'
-      - 'indigo'
-      - 'light-blue'
-      - 'midnight'
-      - 'noctis'
-      - 'nord'
-      - 'Orange Light'
-      - 'PmxMonolight'
-      - 'simple'
-      - 'slate'
-      - 'solarized'
-      - 'solarized-light'
-      - 'sublimination'
-      - 'synthwave'
-      - 'teal'
-      - 'vintage'
-      - 'wood'
-    initial: 'vintage'
-    icon: 'mdi:palette'
+#  current_theme:
+#    name: 'Current Theme'
+#    options:
+#      - 'default'
+#      - 'aqua-fiesta'
+#      - 'amber'
+#      - 'blue-grey'
+#      - 'carbon-green'
+#      - 'Colourful'
+#      - 'dark'
+#      - 'dark_teal'
+#      - 'deep-purple'
+#      - 'grey'
+#      - 'hopscotch-dark'
+#      - 'indigo'
+#      - 'light-blue'
+#      - 'midnight'
+#      - 'noctis'
+#      - 'nord'
+#      - 'Orange Light'
+#      - 'PmxMonolight'
+#      - 'simple'
+#      - 'slate'
+#      - 'solarized'
+#      - 'solarized-light'
+#      - 'sublimination'
+#      - 'synthwave'
+#      - 'teal'
+#      - 'vintage'
+#      - 'wood'
+#    initial: 'vintage'
+#    icon: 'mdi:palette'
 
-  theme_dark:
-    name: 'Dark Themes'
-    options:
-      - 'aqua-fiesta'
-      - 'dark'
-      - 'dark_teal'
-      - 'hopscotch-dark'
-      - 'midnight'
-      - 'noctis'
-      - 'nord'
-      - 'slate'
-      - 'solarized'
-      - 'sublimination'
-      - 'synthwave'
-      - 'teal'
-      - 'vintage'
-      - 'wood'
-    initial: 'hopscotch-dark'
-    icon: 'mdi:palette'
+#  theme_dark:
+#    name: 'Dark Themes'
+#    options:
+#      - 'aqua-fiesta'
+#      - 'dark'
+#      - 'dark_teal'
+#      - 'hopscotch-dark'
+#      - 'midnight'
+#      - 'noctis'
+#      - 'nord'
+#      - 'slate'
+#      - 'solarized'
+#      - 'sublimination'
+#      - 'synthwave'
+#      - 'teal'
+#      - 'vintage'
+#      - 'wood'
+#    initial: 'hopscotch-dark'
+#    icon: 'mdi:palette'
 
-  theme_light:
-    name: 'Light Themes'
-    options:
-      - 'default'
-      - 'amber'
-      - 'blue-grey'
-      - 'carbon-green'
-      - 'Colourful'
-      - 'deep-purple'
-      - 'grey'
-      - 'indigo'
-      - 'light-blue'
-      - 'Orange Light'
-      - 'PmxMonolight'
-      - 'solarized-light'
-      - 'teal'
-      - 'vintage'
-      - 'wood'
-    initial: 'carbon-green'
-    icon: 'mdi:palette'
+#  theme_light:
+#    name: 'Light Themes'
+#    options:
+#      - 'default'
+#      - 'amber'
+#      - 'blue-grey'
+#      - 'carbon-green'
+#      - 'Colourful'
+#      - 'deep-purple'
+#      - 'grey'
+#      - 'indigo'
+#      - 'light-blue'
+#      - 'Orange Light'
+#      - 'PmxMonolight'
+#      - 'solarized-light'
+#      - 'teal'
+#      - 'vintage'
+#      - 'wood'
+#    initial: 'carbon-green'
+#    icon: 'mdi:palette'
 
 
-  radio_station:
-    name: FM radio
-    options:
-      - Europa Plus
-      - Retro FM
-      - Radio 7
-      - Studio21
-      - Novoe Radio
-      - Dorognoe Radio
-      - Love Radio
-      - NRJ
-      - DFM
-      - Mayak
-    initial: Europa Plus
-    icon: mdi:radio
-  iradio_station:
-    name: Internet radio
-    options:
-      - TuneIn Classic FM (London)
-      - A State of Trance [Trance]
-      - Bandit Rock [Rock/Metal]
-      - Nashville FM [Country]
-      #- P3 Star [Hits] ###Sänder inte längre
-      - HirsMilsch Progressive [Trance]
-      - HirsMilsch PsyTrance [Trance]
-      - Plasm [Hits]
-      - 1291 Alternative Rock [Rock]
-      - GuitarMe [Punk]
-      - Deep House Lounge [Electronic]
-    initial: TuneIn Classic FM (London)
-    icon: mdi:radio-tower
+#  radio_station:
+#    name: FM radio
+#    options:
+#      - Europa Plus
+#      - Retro FM
+#      - Radio 7
+#      - Studio21
+#      - Novoe Radio
+#      - Dorognoe Radio
+#      - Love Radio
+#      - NRJ
+#      - DFM
+#      - Mayak
+#    initial: Europa Plus
+#    icon: mdi:radio
+#  iradio_station:
+#    name: Internet radio
+#    options:
+#      - TuneIn Classic FM (London)
+#      - A State of Trance [Trance]
+#      - Bandit Rock [Rock/Metal]
+#      - Nashville FM [Country]
+#      #- P3 Star [Hits] ###Sänder inte längre
+#      - HirsMilsch Progressive [Trance]
+#      - HirsMilsch PsyTrance [Trance]
+#      - Plasm [Hits]
+#      - 1291 Alternative Rock [Rock]
+#      - GuitarMe [Punk]
+#      - Deep House Lounge [Electronic]
+#    initial: TuneIn Classic FM (London)
+#    icon: mdi:radio-tower

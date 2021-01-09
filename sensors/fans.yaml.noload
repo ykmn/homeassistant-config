@@ -1,0 +1,14 @@
+#  - platform: template
+#    sensors:
+#      living_room_temperature:
+#        friendly_name: "Room temperature"
+#        unit_of_measurement: '°C'
+#        value_template: "{{ state_attr('fan.xiaomi_air_humidifier', 'temperature') }}"
+#      living_room_humidity:
+#        friendly_name: "Room Humidity"
+#        unit_of_measurement: '%'
+#        value_template: "{{ state_attr('fan.xiaomi_air_humidifier', 'humidity') }}"
+#      humidifier_depth:
+#        friendly_name: "Humidifier water level"
+#        unit_of_measurement: '%'
+#        value_template: "{{ state_attr('fan.xiaomi_air_humidifier', 'depth') }}"

@@ -14,8 +14,8 @@
 id_rsa
 id_rsa.pub
 home-assistant.log
-home-assistant_*.db
-www/pic_*.jpg
+home-assistant_v2*.*
+local/pic_*.jpg
 
 *.db-journal
 *__pycache__*
@@ -28,7 +28,6 @@ deps
 .HA_VERSION
 .homekit.state
 .uuid
-.shopping_list.json
 
 # Ignore folders
 .storage

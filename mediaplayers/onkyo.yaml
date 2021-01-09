@@ -1,11 +1,15 @@
-  - platform: onkyo
-    host: !secret onkyo_ip
-    name: Onkyo Receiver
-    sources:
-      video6: 'MacMini'
-      fm: 'FM Radio'
-      video3: 'Game PC'
-      network: 'Internet Radio'
+#  - platform: onkyo
+#    host: !secret onkyo_ip
+#    name: Onkyo Receiver
+#    sources:
+#      video6: 'MacMini'
+#      fm: 'FM Radio'
+#      video3: 'Game PC'
+#      network: 'Internet Radio'
+
 #      pc: 'MacMini'
 #      fm: 'FM Tuner'
 #      game: 'Game PC'
+#  - platform: pioneer
+#    host: !secret onkyo_ip
+#    name: Onkyo Receiver

@@ -13,7 +13,7 @@ homeassistant:
 #  time_zone: Europe/Moscow
 
   customize: !include customize.yaml
-  packages: !include_dir_named packages/
+  packages: !include_dir_named packages
   auth_providers:
     - type: homeassistant
 #    - type: legacy_api_password
@@ -34,29 +34,33 @@ cloud:
 # Enables the frontend
 # Included in default_config
 frontend:
-  themes: !include_dir_merge_named themes/
-  javascript_version: latest
+  themes: !include_dir_merge_named themes
 # Simple Service Discovery Protocol integration introduced in 0.94
 # Included in default_config
 ssdp:
 # Scan the network for supported devices and mDNS services
 # Included in default_config
 zeroconf:
-# Tracks everything that is going on within Home Assistant
+
+# Tracks everything that is going on within Home Assistant - moved to Packages
 # Included in default_config
-history: !include logbook_history.yaml
+#history:
+#!include logbook_history.yaml
 # Filter events in a logbook
 # Included in default_config
-logbook: !include logbook_history.yaml
+#logbook:
+#!include logbook_history.yaml
 # Enables support for tracking state changes over time
-recorder: !include recorder.yaml
+#recorder:
+#!include recorder.yaml
+
 
 # Enables a map showing the location of tracked devices
 # Included in default_config
 map:
 # Track the sun
 # Included in default_config
-sun:
+#sun:
 # Mobile app support
 # Included in default_config
 mobile_app:
@@ -78,20 +82,20 @@ updater:
 # You can either converse by pressing the microphone in the frontend (supported browsers only, no iOS)
 # or by calling the conversation/process service with the transcribed text.
 conversation:
-
-# Discover some devices automatically
-# https://www.home-assistant.io/integrations/discovery/
+# Live Camera Stream for Lovelace Picture was introduced in 0.90
+stream:
+# Discover some devices automatically https://www.home-assistant.io/integrations/discovery/
 discovery:
   enable:
 # Homekit is enabled by default since 0.94
 #    - homekit
 #    - yeelight
   ignore:
-    - yeelight
+#    - yeelight
 #uPNP Integration enables you to collect network statistics from your router
 upnp:
-  sensors: true
-  local_ip: !secret hassio_ip
+#  sensors: true
+#  local_ip: !secret hassio_ip
 
 # HTTP serves all files and data required for the Home Assistant frontend
 http:
@@ -133,47 +137,52 @@ panel_iframe:
     icon: mdi:vector-square
 #   url: https://cdn.rawgit.com/james-fry/home-assistant-mdi/efd95d7a/home-assistant-mdi.html
     url: https://dev.materialdesignicons.com/icons
+#    url: https://materialdesignicons.com/
   transmission:
     title: Transmission
     icon: mdi:car-shift-pattern
     url: !secret transmission_url
+#  kodi:
+#    title: Kodi
+#    icon: mdi:theater
+#    url: !secret rpi4_kodi_url
 
-# Log setup
+# Log setup - moved to Packages
 # Log Severities: notset, debug, info, warn, warning, error, fatal, critical
-logger:
-  default: info
-  logs:
-    homeassistant.components.light.yeelight: warning
-    homeassistant.components.vacuum: critical
-    homeassistant.components.media_player.itunes: critical
-    homeassistant.components.media_player.onkyo: debug
-    homeassistant.components.fan: warning
-    homeassistant.components.fan.xiaomi_miio: warning
-    onkyo: debug
-    miio: warning
+#logger:
+#  default: info
+#  logs:
+#    homeassistant.components.light.yeelight: warning
+#    homeassistant.components.vacuum: critical
+#    homeassistant.components.media_player.itunes: critical
+#    homeassistant.components.media_player.onkyo: debug
+#    homeassistant.components.fan: warning
+#    homeassistant.components.fan.xiaomi_miio: warning
+#    onkyo: debug
+#    miio: warning
 
-# Enables WOL service
-wake_on_lan:
+# Enables WOL service - moved to Packages
+#wake_on_lan:
 
 # Includes:
-media_player: !include_dir_merge_list mediaplayers/
-sensor: !include_dir_merge_list sensors/
-binary_sensor: !include binary_sensors.yaml
-camera: !include_dir_merge_list cameras/
-switch: !include_dir_merge_list switches/
-script: !include scripts.yaml
 automation: !include automations.yaml
-shell_command: !include shell.yaml
+binary_sensor: !include binary_sensors.yaml
 fan: !include fans.yaml
+group: !include groups.yaml
 scene: !include scenes.yaml
+script: !include scripts.yaml
+shell_command: !include shell_commands.yaml
 input_select: !include input_select.yaml
 input_boolean: !include input_boolean.yaml
 input_text: !include input_text.yaml
 input_number: !include input_number.yaml
 input_datetime: !include input_datetime.yaml
-#group: !include groups.yaml
-
 weather: !include weather.yaml
+
+camera: !include_dir_merge_list cameras/
+switch: !include_dir_merge_list switches/
+media_player: !include_dir_merge_list mediaplayers/
+sensor: !include_dir_merge_list sensors/
 
 # Text to speech
 tts:
@@ -207,24 +216,21 @@ zone 3:
   radius: 200
   icon: mdi:home
 
-# Yeelight
-yeelight: !include yeelight.yaml
-light:
-  - platform: group
-    name: All Lights
-    entities:
-      - light.living_room
-      - light.night_light
-      - light.table_light
+# Yeelight - moved to Packages
+#yeelight: !include yeelight.yaml
+#light:
+#  - platform: group
+#    name: All Lights
+#    entities:
+#      - light.living_room
+#      - light.night_light
+#      - light.table_light
 
 # Speedtest.com
 speedtestdotnet:
   scan_interval:
     minutes: 30
-  monitored_conditions:
-    - ping
-    - download
-    - upload
+
 
 # since 0.100 install MQTT-addon, create mqtt-user in Users and use Integrations:
 # Mosquitto broker
@@ -233,22 +239,22 @@ speedtestdotnet:
 #  discovery: true
 #  discovery_prefix: homeassistant
 
-# Live Camera Stream for Lovelace Picture was introduced in 0.90
-stream:
 
 # Keenetic device tracker
 device_tracker:
-  - platform: keenetic_ndms2
-    host: !secret keenetic_ip
-    username: !secret keenetic_user
-    password: !secret keenetic_password
-    interval_seconds: 180
-    consider_home: 0:15
-    new_device_defaults:
-      track_new_devices: false
+#  - platform: keenetic_ndms2
+#    host: !secret keenetic_ip
+#    username: !secret keenetic_user
+#    password: !secret keenetic_password
+#    interval_seconds: 180
+#    consider_home: 0:15
+#    new_device_defaults:
+#      track_new_devices: false
   - platform: bluetooth_tracker
     consider_home: 0:03
     request_rssi: true
+#  - platform: bluetooth_le_tracker
+#    track_new_devices: true
   - platform: nmap_tracker
     hosts: 192.168.1.1/24
     home_interval: 15
@@ -278,7 +284,11 @@ proximity:
 #    longitude: !secret geo_longitude_home
 
 roomba:
-    host: !secret roomba_ip
-    blid: !secret roomba_blid
-    password: !secret roomba_password
-    continuous: false
+  host: !secret roomba_ip
+  blid: !secret roomba_blid
+  password: !secret roomba_password
+  continuous: false
+
+#spotify: - moved to Packages
+#  client_id: !secret spotify_id
+#  client_secret: !secret spotify_secret

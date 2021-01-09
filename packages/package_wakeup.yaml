@@ -1,0 +1,60 @@
+homeassistant:
+  customize:
+    package.node_anchors:
+      customize: &customize
+        package: 'wakeup'
+
+
+input_boolean:
+  wakeup:
+    name: Wakeup
+    icon: mdi:weather-sunset-up
+    initial: on
+  vacation_mode:
+    name: Vacation Mode
+    icon: mdi:beach
+    initial: off
+
+input_datetime:
+  wakeup_time:
+    name: Wakeup Time
+    has_date: false
+    has_time: true
+    initial: 08:15
+
+binary_sensor:
+  - platform: tod
+    name: Night
+    after: sunset
+    before: sunrise
+
+  - platform: workday
+    country: RU
+    name: Workday Sensor
+    workdays: [mon, tue, wed, thu, fri]
+    excludes: [sat, sun, holiday]
+
+automation:
+- id: Sunrise_lights
+  alias: Sunrise Lights - Bedroom
+  trigger:
+  - platform: template
+    value_template: '{{ states(''sensor.time'') == (states.input_datetime.wakeup_time.attributes.timestamp
+      | int | timestamp_custom(''%H:%M'', False)) }}'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.wakeup
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+  action:
+  - service: light.turn_on
+    entity_id: light.bedroom_light
+    data:
+     effect: Sunrise

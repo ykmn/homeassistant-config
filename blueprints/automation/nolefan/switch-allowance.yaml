@@ -1,0 +1,24 @@
+blueprint:
+  name: Switch Allowance
+  description: Turns a switch off after an allotted time
+  domain: automation
+  input:
+    Switch:
+      name: Switch
+      description: This Switch will turn off after allowed time.
+      selector:
+        entity:
+          domain: switch
+    duration:
+      name: Duration
+      description: The amount of allotted time. (HH:MM:SS)
+  source_url: https://community.home-assistant.io/t/switch-allowance/256624
+trigger:
+  platform: state
+  entity_id: !input 'Switch'
+  to: 'on'
+  for: !input 'duration'
+action:
+  service: switch.turn_off
+  entity_id: !input 'Switch'
+mode: single

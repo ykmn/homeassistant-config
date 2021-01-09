@@ -1,0 +1,127 @@
+homeassistant:
+  customize:
+    package.node_anchors:
+      customize: &customize
+        package: 'Yeelight'
+    light.yeelight_mono1_286c07b194ff:
+      friendly_name: Office Light
+    light.yeelight_color1_286c07b1abb6:
+      friendly_name: Bedroom Light
+
+discovery:
+  enable:
+#    - yeelight
+  ignore:
+    - yeelight
+
+logger:
+  logs:
+    homeassistant.components.light.yeelight: warning
+    homeassistant.components.yeelight: warning
+
+yeelight:
+  devices:
+    !secret yeelightBR_ip:
+      name: Bedoom Light
+      transition: 800
+      model: color1
+    !secret yeelightTL_ip:
+      name: Table Light
+      transition: 200
+      model: lamp1
+    !secret yeelightOF_ip:
+      name: Office Light
+      transition: 200
+      model: mono1
+  custom_effects:
+    - name: 'Sunrise'
+      flow_params:
+        count: 1
+        action: stay
+        transitions:
+#         - RGBTransition: [255, 77, 0, 50, 1]
+#         - TemperatureTransition: [1700, 360000, 10]
+#         - TemperatureTransition: [2700, 540000, 100]
+          - RGBTransition: [255, 0, 0, 50, 1]
+          - TemperatureTransition: [1700, 180000, 10]
+          - TemperatureTransition: [2700, 180000, 11]
+          - TemperatureTransition: [3700, 180000, 12]
+          - TemperatureTransition: [4700, 180000, 13]
+          - TemperatureTransition: [6500, 180000, 100]
+    - name: 'Fire Flicker'
+      flow_params:
+        count: 0
+        transitions:
+          - TemperatureTransition: [1900, 1000, 80]
+          - TemperatureTransition: [1900, 2000, 60]
+          - SleepTransition:       [1000]
+    - name: 'Lightning'
+      flow_params:
+        count: 0
+        transitions:
+          - TemperatureTransition: [6500, 50, 0]
+          - TemperatureTransition: [6500, 50, 50]
+          - TemperatureTransition: [6500, 50, 0]
+          - SleepTransition:       [3000]
+          - TemperatureTransition: [6500, 50, 50]
+          - TemperatureTransition: [6500, 50, 0]
+          - TemperatureTransition: [6500, 50, 50]
+          - TemperatureTransition: [6500, 50, 0]
+          - SleepTransition:       [1500]
+    - name: 'Flicker'
+      flow_params:
+        count: 0
+        transitions:
+          - TemperatureTransition: [6500, 50, 0]
+          - TemperatureTransition: [6500, 50, 50]
+          - SleepTransition:       [3000]
+    - name: 'Self_Alarm'
+      flow_params:
+        count: 0
+        transitions:
+          - RGBTransition: [0,0,255,300,1]
+          - RGBTransition: [222,0,0,50,1]
+          - RGBTransition: [255,52,52,50,256]
+          - RGBTransition: [222,0,0,50,1]
+          - RGBTransition: [0,0,255,50,256]
+          - RGBTransition: [222,0,0,50,1]
+          - RGBTransition: [255,52,52,50,256]
+          - RGBTransition: [222,0,0,50,1]
+
+light:
+  - platform: group
+    name: All Lights
+    entities:
+      - light.bedroom_light
+      - light.office_light
+      - light.table_light
+
+group:
+  all_light:
+    name: All Light
+    icon: mdi:lightbulb-on-outline
+    entities:
+      - light.bedroom_light
+      - light.office_light
+      - light.table_light
+
+automation:
+  - id: Morning-Lights-Off
+    alias: Turn off light at 9:00
+    trigger:
+    - at: '9:00:00'
+      platform: time
+    condition:
+    - condition: time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+    - condition: state
+      entity_id: light.bedroom_light
+      state: 'on'
+    action:
+    - entity_id: light.bedroom_light
+      service: light.turn_off

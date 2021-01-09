@@ -1,0 +1,194 @@
+homeassistant:
+  customize:
+    script.onkyo_pc:
+      icon: mdi:desktop-mac-dashboard
+    script.onkyo_fm:
+      icon: none
+    input_number.onkyo_volume:
+      icon: mdi:volume-source
+    input_select.onkyo:
+      icon: mdi:import
+    media_player.txnr545_airtunes_speaker:
+      hidden: true
+    sensor.onkyo_input:
+      icon: mdi:import
+    package.node_anchors:
+      customize: &customize
+        package: 'Onkyo'
+
+media_player:
+  - platform: onkyo
+    host: !secret onkyo_ip
+    name: Onkyo Receiver
+    sources:
+#      video6: 'MacMini'
+      tv: 'TV'
+      fm: 'FM Radio'
+      video3: 'Game PC'
+      network: 'Internet Radio'
+
+sensor:
+  - platform: template
+    sensors:
+      onkyo_source:
+        entity_id: media_player.onkyo_receiver
+        value_template: '{{ states.media_player.onkyo_receiver.attributes.source }}'
+        friendly_name: 'Onkyo Source'
+
+logger:
+  logs:
+    homeassistant.components.media_player.onkyo: debug
+    onkyo: debug
+
+
+input_number:
+  onkyo_volume:
+    name: Onkyo Volume
+    initial: 30
+    min: 0
+    max: 60
+    step: 1
+
+input_select:
+  onkyo:
+    name: Onkyo Input
+    options:
+      - Select Input
+      - TV
+#      - Intel NUC Kodi
+      - FM Radio
+#      - Cast
+      - Net
+    icon: mdi:monitor
+  radio_station:
+    name: FM radio
+    options:
+      - Europa Plus
+      - Retro FM
+      - Radio 7
+      - Studio21
+      - Novoe Radio
+      - Dorognoe Radio
+      - Love Radio
+      - NRJ
+      - DFM
+      - Mayak
+    initial: Europa Plus
+    icon: mdi:radio-tower
+
+
+
+
+automation:
+  - id: Tune-FM-preset
+    alias: Select FM radio preset automatically
+    trigger:
+    - entity_id: input_select.radio_station
+      platform: state
+    action:
+    - service: script.onkyo_fm
+
+  - id: Onkyo_Volume_Set
+    alias: Onkyo Volume Slider Set
+    trigger:
+    - platform: state
+      entity_id: input_number.onkyo_volume
+    condition:
+    - condition: state
+      entity_id: media_player.onkyo_receiver
+      state: 'on'
+    action:
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.onkyo_receiver
+        volume_level: '{{ states.input_number.onkyo_volume.state | float / 80 }}'
+
+  - id: Onkyo_Volume_Get
+    alias: Onkyo Volume Slider Get
+    trigger:
+      platform: state
+      entity_id: media_player.onkyo_receiver
+    action:
+      service: input_number.set_value
+      data_template:
+        entity_id: input_number.onkyo_volume
+        value: '{{ states.media_player.onkyo_receiver.attributes.volume_level | float * 80 }}'
+
+  - id: Onkyo_Input_Get
+    alias: Onkyo Input Get
+    trigger:
+      platform: state
+      entity_id: media_player.onkyo_receiver
+    action:
+      service: input_select.set_value
+      data_template:
+        entity_id: input_select.onkyo_input
+        value: '{{ states.media_player.onkyo_receiver.attributes.source }}'
+
+  - id: Onkyo_Input_Set
+    alias: Onkyo Input Select Automation
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: input_select.onkyo_input
+        from: 'Select Input'
+    action:
+      - service: media_player.select_source
+        entity_id: media_player.onkyo_receiver
+        data_template:
+          source: >-
+            {% if is_state("input_select.onkyo", "FM Radio") %}
+              fm
+            {% elif is_state("input_select.onkyo", "Internet Radio") %}
+              network
+            {% elif is_state("input_select.onkyo", "TV") %}
+              tv
+            {% else %}
+              Unknown
+            {% endif %}
+      - service: input_select.select_option
+        entity_id: input_select.onkyo_input
+        data_template:
+          option: "Select Input"
+
+
+
+############# script
+script:
+  onkyo_tv:
+    alias: 'Onkyo: Select TV input'
+    sequence:
+    - data:
+        entity_id: media_player.onkyo_receiver
+      service: media_player.turn_on
+    - data:
+        entity_id: media_player.onkyo_receiver
+        source: tv
+      service: media_player.select_source
+
+  onkyo_fm:
+    alias: 'Onkyo: Select FM Radio preset'
+    sequence:
+    - service: media_player.turn_on
+      data:
+        entity_id: media_player.onkyo_receiver
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.onkyo_receiver
+        source: fm
+    - service: media_player.play_media
+      data_template:
+        entity_id: media_player.onkyo_receiver
+        media_content_type: radio
+        media_content_id: >-
+          {% if is_state("input_select.radio_station", "Europa Plus") %}1
+          {%-elif is_state("input_select.radio_station", "Retro FM")  %}2
+          {%-elif is_state("input_select.radio_station", "Radio 7")   %}3
+          {%-elif is_state("input_select.radio_station", "Studio21")  %}4
+          {%-elif is_state("input_select.radio_station", "Novoe Radio") %}5
+          {%-elif is_state("input_select.radio_station", "Dorognoe Radio") %}6
+          {%-elif is_state("input_select.radio_station", "Love Radio") %}7
+          {%-elif is_state("input_select.radio_station", "NRJ")        %}8
+          {%-elif is_state("input_select.radio_station", "DFM")        %}9
+          {%-elif is_state("input_select.radio_station", "Mayak")      %}10
+          {% endif %}

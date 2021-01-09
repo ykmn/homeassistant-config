@@ -1,0 +1,15 @@
+#################################################################
+## Wake-on-lan switch
+#################################################################
+#- platform: wake_on_lan
+#  name: "MacMini Wake-on-LAN"
+#  mac: f0:18:98:ec:73:3e
+#  host: !secret macmini_ip
+#  turn_off:
+#    service: shell_command.sleep_macmini
+#- platform: wake_on_lan
+#  name: "NUC Wake-on-LAN"
+#  mac_address: "94:c6:91:15:b2:e1"
+#  host: !secret ip_nuc
+#  turn_off:
+#    service: shell_command.sleep_nuc

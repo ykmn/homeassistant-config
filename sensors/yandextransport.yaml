@@ -1,10 +1,16 @@
   - platform: yandex_transport
-    name: Bus to work
-    stop_id: !secret yt_bustowork
+    name: Bus B counterclockwise
+    stop_id: !secret yt_busbcounterclockwise
     routes:
-      - 74
+      - Б
+      - 40
   - platform: yandex_transport
-    name: Tram to work
-    stop_id: !secret yt_tramtowork
+    name: Bus B clockwise
+    stop_id: !secret yt_busbclockwise
     routes:
-      - 45
+      - Б
+  - platform: yandex_transport
+    name: m8 to Downtown
+    stop_id: !secret yt_busm8center
+    routes:
+      - м8

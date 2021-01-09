@@ -1,0 +1,22 @@
+# Enables WOL service
+wake_on_lan:
+
+switch:
+  - platform: wake_on_lan
+    name: "MacMini Wake-on-LAN"
+    mac: !secret macmini_mac
+    host: !secret macmini_ip
+    turn_off:
+      service: shell_command.sleep_macmini
+  - platform: wake_on_lan
+    name: "Intel NUC Wake-on-LAN"
+    mac: !secret intelnuc_mac
+    host: !secret intelnuc_ip
+    turn_off:
+      service: kodi.call_method
+      data:
+        entity_id: media_player.kodi_nuc
+        method: System.Shutdown
+
+shell_command:
+  sleep_macmini: ssh -i /config/ssh/id_rsa -o StrictHostKeyChecking=no twelve@192.168.1.63 'pmset sleepnow'

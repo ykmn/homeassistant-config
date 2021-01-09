@@ -1,0 +1,39 @@
+homeassistant:
+  customize:
+    sensor.bedroom_humidity:
+      icon: mdi:water
+    sensor.bedroom_temperature:
+      icon: mdi:home-thermometer
+    sensor.humidifier_depth:
+      icon: mdi:car-coolant-level
+    package.node_anchors:
+      customize: &customize
+        package: 'Humidifier'
+
+fan:
+  - platform: xiaomi_miio
+    host: !secret xiaomi_humid_ip
+    token: !secret xiaomi_humid_token
+    name: Xiaomi Air Humidifier
+
+sensor:
+  - platform: template
+    sensors:
+      bedroom_temperature:
+        friendly_name: "Room temperature"
+        unit_of_measurement: '°C'
+        value_template: "{{ state_attr('fan.xiaomi_air_humidifier', 'temperature') }}"
+      bedroom_humidity:
+        friendly_name: "Room Humidity"
+        unit_of_measurement: '%'
+        value_template: "{{ state_attr('fan.xiaomi_air_humidifier', 'humidity') }}"
+      humidifier_depth:
+        friendly_name: "Humidifier water level"
+        unit_of_measurement: '%'
+        value_template: "{{ state_attr('fan.xiaomi_air_humidifier', 'depth') }}"
+
+logger:
+  logs:
+    homeassistant.components.fan: warning
+    homeassistant.components.fan.xiaomi_miio: warning
+    miio: warning

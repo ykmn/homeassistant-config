@@ -1,0 +1,117 @@
+blueprint:
+  name: Vacuum Schedule
+  description: 'Vacuum clean ups schedule for the week
+
+    '
+  domain: automation
+  input:
+    target_vacuum:
+      name: Vacuum
+      description: The vacuum used for clean ups
+      selector:
+        entity:
+          domain: vacuum
+    monday_enabled:
+      name: Monday
+      default: true
+      selector:
+        boolean: {}
+    monday_time:
+      name: ' '
+      default: '15:00:00'
+      selector:
+        time: {}
+    tuesday_enabled:
+      name: Tuesday
+      default: true
+      selector:
+        boolean: {}
+    tuesday_time:
+      name: ' '
+      default: '15:00:00'
+      selector:
+        time: {}
+    wednesday_enabled:
+      name: Wednesday
+      default: true
+      selector:
+        boolean: {}
+    wednesday_time:
+      name: ' '
+      default: '15:00:00'
+      selector:
+        time: {}
+    thursday_enabled:
+      name: Thursday
+      default: true
+      selector:
+        boolean: {}
+    thursday_time:
+      name: ' '
+      default: '15:00:00'
+      selector:
+        time: {}
+    friday_enabled:
+      name: Friday
+      default: true
+      selector:
+        boolean: {}
+    friday_time:
+      name: ' '
+      default: '15:00:00'
+      selector:
+        time: {}
+    saturday_enabled:
+      name: Saturday
+      default: true
+      selector:
+        boolean: {}
+    saturday_time:
+      name: ' '
+      default: '15:00:00'
+      selector:
+        time: {}
+    sunday_enabled:
+      name: Sunday
+      default: true
+      selector:
+        boolean: {}
+    sunday_time:
+      name: ' '
+      default: '15:00:00'
+      selector:
+        time: {}
+  source_url: https://community.home-assistant.io/t/vacuum-schedule/256590
+variables:
+  monday_enabled: !input 'monday_enabled'
+  monday_time: !input 'monday_time'
+  tuesday_enabled: !input 'tuesday_enabled'
+  tuesday_time: !input 'tuesday_time'
+  wednesday_enabled: !input 'wednesday_enabled'
+  wednesday_time: !input 'wednesday_time'
+  thursday_enabled: !input 'thursday_enabled'
+  thursday_time: !input 'thursday_time'
+  friday_enabled: !input 'friday_enabled'
+  friday_time: !input 'friday_time'
+  saturday_enabled: !input 'saturday_enabled'
+  saturday_time: !input 'saturday_time'
+  sunday_enabled: !input 'sunday_enabled'
+  sunday_time: !input 'sunday_time'
+  current_day: '{{ now().weekday() | int }}'
+  current_time: '{{ now().strftime("%H:%M:%S") }}'
+trigger:
+  platform: time_pattern
+  minutes: '*'
+condition:
+  condition: template
+  value_template: "{{ \n  (current_day == 0 and monday_enabled and monday_time ==\
+    \ current_time)\n  or (current_day == 1 and tuesday_enabled and tuesday_time ==\
+    \ current_time)\n  or (current_day == 2 and wednesday_enabled and wednesday_time\
+    \ == current_time)\n  or (current_day == 3 and thursday_enabled and thursday_time\
+    \ == current_time)\n  or (current_day == 4 and friday_enabled and friday_time\
+    \ == current_time)\n  or (current_day == 5 and saturday_enabled and saturday_time\
+    \ == current_time)\n  or (current_day == 6 and sunday_enabled and sunday_time\
+    \ == current_time)\n}}\n"
+action:
+  service: vacuum.start
+  entity_id: !input 'target_vacuum'
