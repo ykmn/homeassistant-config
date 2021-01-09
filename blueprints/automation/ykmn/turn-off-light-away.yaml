@@ -1,0 +1,39 @@
+blueprint:
+  name: Turn light off when everybody away
+  description: >
+    When a person(s) leave home,
+    turn off the lights!
+  domain: automation
+  source_url: https://github.com/ykmn/hass-blueprints/turn-off-lights-away.yaml
+  input:
+    light_list:
+      name: Lights list
+      description: List of lights that will trigger all other lights off
+      selector:
+        target:
+          entity:
+            domain: light
+
+    persons_list:
+      name: Persons list
+      description: List of persons that should be away for turn lights off
+      selector:
+        target:
+          entity:
+            domain: person
+
+
+
+trigger:
+  - platform: state
+    entity_id: !input persons_list
+    from: "home"
+    to: "away"
+condition:
+  condition: template
+  value_template: "{{ states.person | map(attribute='state') | select('eq','home') | list | length == 1 }}"
+action:
+  - service: light.turn_off
+    data_template:
+      entity_id: "{{ states.light | map(attribute='entity_id') | join(', ') }}"
+mode: single
